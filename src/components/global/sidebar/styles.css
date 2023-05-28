@@ -1,0 +1,54 @@
+.sidebar {
+    transition: 0.3s all ease-in-out;
+}
+.sidebar.show{
+    left : 0;
+}
+.sideMenu-list{
+    @apply flex flex-col;
+}
+.sideMenu-item {
+    @apply py-3
+}
+.sideMenu-item a , .signout , .sideMenu-item > div{
+    @apply flex items-center gap-3  cursor-pointer relative pl-5;
+}
+.sideMenu-item:hover a  {
+    color : var(--primary);
+
+}
+.sideMenu-item i {
+    @apply text-lg;
+}
+.sideMenu-item.active {
+    @apply text-pure bg-primary w-full py-4 ;
+    background-image: var(--primaryGradientHover)
+}
+.sideMenu-item.active:hover a {
+    color : var(--pure);
+}
+
+.sideMenu-item-angle{
+    @apply absolute top-1/2 right-0 -translate-y-[45%] text-lg text-grayText;
+}
+
+/* DROP MENU */
+
+.dropMenu {
+    @apply pl-16 pt-1 pb-2 flex flex-col gap-4;
+}
+.dropMenu-item a{
+    @apply flex items-center gap-3 text-dark;
+}
+.dropMenu-item.drop-active a {
+    @apply text-primary;
+}
+.dropMenu-item .dot {
+    @apply w-2 h-2 rounded-full bg-dark;
+}
+.dropMenu-item.drop-active .dot {
+    @apply bg-secondary;
+}
+
+
+
