@@ -1,5 +1,6 @@
 import BackBtn from 'components/global/BackBtn';
 import Heading from 'components/global/Heading';
+import ItemNotFound from 'components/global/ItemNotFound';
 import Layout from 'components/global/Layout';
 import Loader from 'components/global/Loader';
 import Pagination from 'components/global/pagination';
@@ -42,6 +43,8 @@ const WalletHistory = () => {
                     ? 
                         <Loader />
                     : 
+                    history?.length > 0 
+                    ?
                         <div className=" shadow-bg overflow-x-auto rounded-lg ">
                             <Table className="w-full table-auto overflow-x-auto ">
                                 <Thead className="border-b text-sm">
@@ -100,7 +103,8 @@ const WalletHistory = () => {
                                 />
                             }
                         </div>
-
+                    : 
+                        <ItemNotFound message='No history found.' />
                 }
             </div>
         </Layout>
