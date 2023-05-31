@@ -13,7 +13,7 @@ import Progress from "pages/progress";
 import Team from "pages/team";
 import WithdrawRequests from "pages/withdrawlRequests";
 import WithdrawRequestDetails from "pages/withdrawlRequests/WithdrawRequestDetails";
-import { BrowserRouter as Router , Routes , Route } from "react-router-dom";
+import { BrowserRouter as Router , Routes , Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import WalletHistory from "pages/walletHistory";
 import InvestNow from "pages/offers/InvestNow";
@@ -28,11 +28,15 @@ import WithdrawSuccess from "pages/withdraw/WithdrawSuccess";
 import ChangeBank from "pages/bank/ChangeBank";
 import Invite from "pages/invite";
 import { useApi } from "config/api";
+import ProtectedRoute from "ProtectedRoute";
+import { useSelector } from "react-redux";
 
 
 
 function App() {
     useApi();
+
+    const { user } = useSelector(state => state.auth);
 
     return (
         <div>
@@ -45,79 +49,176 @@ function App() {
             />
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
-                <Route path='/forgot-password' element={<ForgotPassword />} />
-                <Route path='/reset-password' element={<ResetPassword />} />
-                <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/invests' element={<Invests />} />
-                <Route path='/progress' element={<Progress />} />
-                <Route path='/deposits/history' element={<Depsoits />} />
-                <Route path='/deposits/details/:id' element={<DepositDetails />} />
-                <Route path='/team' element={<Team />} />
+                <Route path='/login' element={
+                    user ? <Navigate to="/dashboard" replace /> : <Login />
+                } />
+                <Route path='/register' element={
+                    user ? <Navigate to="/dashboard" replace /> : <Register />} 
+                />
+                <Route path='/forgot-password' element={
+                    user ? <Navigate to="/dashboard" replace /> : <ForgotPassword />} 
+                />
+                <Route path='/reset-password' element={
+                    user ? <Navigate to="/dashboard" replace /> : <ResetPassword />} 
+                />
+                <Route path='/dashboard' element={
+                    <ProtectedRoute >
+                        <Dashboard />
+                    </ProtectedRoute>
+                } 
+                />
+                <Route path='/invests' element={
+                    <ProtectedRoute>
+                        <Invests />
+                    </ProtectedRoute>
+                } />
+                <Route path='/progress' element={
+                    <ProtectedRoute>
+                        <Progress />
+                    </ProtectedRoute>
+                } />
+                <Route path='/deposits/history' element={
+                    <ProtectedRoute>
+                        <Depsoits />
+                    </ProtectedRoute>
+                } />
+                <Route path='/deposits/details/:id' element={
+                    <ProtectedRoute>
+                        <DepositDetails />
+                    </ProtectedRoute>
+                } />
+                <Route path='/team' element={
+                    <ProtectedRoute>
+                        <Team />
+                    </ProtectedRoute>
+                } />
                 <Route 
                 path='/withdraw-requests' 
-                element={<WithdrawRequests />} 
+                element={
+                    <ProtectedRoute>
+                        <WithdrawRequests />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/withdraw-requests/details/:id' 
-                element={<WithdrawRequestDetails />} 
+                element={
+                    <ProtectedRoute>
+                        <WithdrawRequestDetails />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/wallet-history' 
-                element={<WalletHistory />} 
+                element={
+                    <ProtectedRoute>
+                        <WalletHistory />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/offers' 
-                element={<Offers />} 
+                element={
+                    <ProtectedRoute>
+                        <Offers />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/offers/details/:id' 
-                element={<OfferDetails />} 
+                element={
+                    <ProtectedRoute>
+                        <OfferDetails />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/offers/invest/:id' 
-                element={<InvestNow />} 
+                element={
+                    <ProtectedRoute>
+                        <InvestNow />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/offers/invest-success' 
-                element={<InvestSuccess />} 
+                element={
+                    <ProtectedRoute>
+                        <InvestSuccess />
+                    </ProtectedRoute>
+                } 
                 />
                 <Route 
                 path='/profile'
-                element={<Profile />}
+                element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/support'
-                element={<Support />}
+                element={
+                    <ProtectedRoute>
+                        <Support />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/deposit'
-                element={<Deposit />}
+                element={
+                    <ProtectedRoute>
+                        <Deposit />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/deposit/success'
-                element={<DepositSuccess />}
+                element={
+                    <ProtectedRoute>
+                        <DepositSuccess />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/add-bank'
-                element={<AddBank />}
+                element={
+                    <ProtectedRoute>
+                        <AddBank />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/withdraw'
-                element={<Withdraw />}
+                element={
+                    <ProtectedRoute>
+                        <Withdraw />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/withdraw/success'
-                element={<WithdrawSuccess />}
+                element={
+                    <ProtectedRoute>
+                        <WithdrawSuccess />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/change-bank'
-                element={<ChangeBank />}
+                element={
+                    <ProtectedRoute>
+                        <ChangeBank />
+                    </ProtectedRoute>
+                }
                 />
                 <Route 
                 path='/invite'
-                element={<Invite />}
+                element={
+                    <ProtectedRoute>
+                        <Invite />
+                    </ProtectedRoute>
+                }
                 />
             </Routes>
         </div> 
