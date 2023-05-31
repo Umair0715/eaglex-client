@@ -110,19 +110,19 @@ const Withdraw = () => {
                                             amount && 
                                             <div className='mt-10 flex flex-col gap-1 '>
                                                 <div className='flex items-center gap-4'>
-                                                    <p className='font-medium w-[140px]'>Govt Fee : </p>
+                                                    <p className='font-medium w-[150px]'>Govt Tax : </p>
                                                     <span>
                                                         {settings?.govtFee + '%' + " = " + ((amount/100) * settings?.govtFee).toFixed(2) + ' PKR'}
                                                     </span>
                                                 </div>
                                                 <div className='flex items-center gap-4'>
-                                                    <p className='font-medium w-[140px]'>Platform Fee : </p>
+                                                    <p className='font-medium w-[150px]'>Service Charges : </p>
                                                     <span>
                                                         {settings?.platformFee + '%' + " = " + ((amount/100) * settings?.platformFee).toFixed(2) + ' PKR'}
                                                     </span>
                                                 </div>
                                                 <div className='flex items-center gap-4'>
-                                                    <p className='font-medium w-[140px]'>You Recieved : </p>
+                                                    <p className='font-medium w-[150px]'>You Recieved : </p>
                                                     <span>
                                                         { (amount - (((amount/100) * settings?.platformFee) + ((amount/100) * settings?.govtFee))).toFixed(2) + ' PKR'}
                                                     </span>

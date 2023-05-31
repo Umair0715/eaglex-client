@@ -1,4 +1,5 @@
 import BackBtn from 'components/global/BackBtn'
+import CopyInput from 'components/global/CopyInput'
 import FileInput from 'components/global/FileInput'
 import Heading from 'components/global/Heading'
 import Input from 'components/global/Input'
@@ -70,25 +71,19 @@ const Deposit = () => {
                         <div>
                             <div className='flex flex-col gap-4'>
                                 <div className='flex items-center sm:flex-row flex-col gap-4'>
-                                    <Input
+                                    <CopyInput
                                     label='Bank Name'
-                                    placeholder='EagleX Bank Name'
                                     value={settings?.bankName}
-                                    readOnly
                                     />
-                                    <Input
+                                    <CopyInput
                                     label='Account Holder Name'
-                                    placeholder='EagleX Acc holder Name'
                                     value={settings?.accountHolder}
-                                    readOnly
                                     />
                                 </div>
                                 <div>
-                                    <Input
+                                    <CopyInput
                                     label='Account Number'
-                                    placeholder='EagleX Account Number'
                                     value={settings?.accountNo}
-                                    readOnly
                                     />
                                 </div>
                             </div>
@@ -100,7 +95,7 @@ const Deposit = () => {
                 </div>
 
                 <div className='mt-6'>
-                    <Heading title='Payment Proof' showIcon={false} />
+                    <Heading title='Enter Transaction Details' showIcon={false} />
                     <div className='shadow-bg p-4 mt-4'>
                         <div>
                             <form className='flex flex-col gap-4' onSubmit={submitHandler}>

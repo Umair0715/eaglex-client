@@ -86,9 +86,9 @@ const Register = () => {
                         value={referrer}
                         setValue={setReferrer}
                         readonly={searchParams.get('ref_code')}
+                        optional
                         />
                         <PasswordInput
-                        type='password'
                         label='Password'
                         placeholder='Password'
                         value={password}
@@ -96,7 +96,6 @@ const Register = () => {
                         required
                         />
                         <PasswordInput
-                        type='password'
                         label='Confirm Password'
                         placeholder='Confirm your password'
                         value={passwordConfirm}

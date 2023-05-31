@@ -50,7 +50,6 @@ const Login = () => {
                         required
                         />
                         <PasswordInput
-                        type='password'
                         label='Password'
                         placeholder='Enter your password'
                         value={password} 

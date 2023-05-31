@@ -13,10 +13,13 @@ const Offers = ({ offers }) => {
             <div className='grid lg:grid-cols-2 grid-cols-1 gap-6 mt-4'>
                 {
                     offers?.map((item,i) => (
-                        <div key={i} className='shadow-bg-2 p-3 rounded-lg flex sm:items-center justify-between cursor-pointer'
+                        <div key={i} className={`shadow-bg-2 p-3 rounded-lg flex sm:items-center justify-between cursor-pointer
+                        
+                        `}
                         onClick={() => {
                             navigate(`/offers/details/${item?._id}`)
                         }}
+                        title={`${!item?.isActive ? 'This offer is not active to invest.' : 'Click to invest'}`}
                         >
                             <div className='flex sm:flex-row flex-col sm:items-center items-start w-fit gap-4  '
                             

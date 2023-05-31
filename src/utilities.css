@@ -77,10 +77,10 @@
     @apply bg-gray-100 rounded-md px-2 text-xl font-semibold;
 }
 
-.input , .react-datepicker__input-container input{
+.input , .react-datepicker__input-container input , .copy-input{
     @apply border py-3 px-3 text-gray-600 rounded-md outline-none w-full ;
 }
-.input::placeholder{
+.input::placeholder , .copy-input::placeholder{
     color : rgb(163, 163, 163);
 }
 .input:focus{

@@ -60,7 +60,7 @@ export const logout = (navigate , showToast = true) => async(dispatch) => {
     try {
         await Axios('/user/logout');
         dispatch(setUser(null));
-        localStorage.setItem('user' , null);
+        localStorage.removeItem('user');
         dispatch(setLoading(false));
         navigate('/login');
         if(showToast){

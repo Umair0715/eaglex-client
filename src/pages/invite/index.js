@@ -1,29 +1,33 @@
 import Layout from 'components/global/Layout'
 import gift from 'assets/images/gift.png';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import BackBtn from 'components/global/BackBtn';
 import { toast } from 'react-toastify';
+import copy from 'copy-to-clipboard';
+import CopySvg from 'assets/svgs/CopySvg';
+import CopySuccessSvg from 'assets/svgs/CopySuccessSvg';
 
 const Invite = () => {
     const { user } = useSelector(state => state.auth);
     const url = window.location.origin + `/register?ref_code=${user?.referralCode}`;
+    const [copied , setCopied] = useState(false);
 
+    const copyToClipboard = () => {
+        copy(url);
+        setCopied(true);
+        setTimeout(() => {
+            setCopied(false);
+        }, 1000)
+        toast.success('Referral Link Copied.' , {
+            autoClose : 1000
+        })
+    }
 
     useEffect(() => {
         window.scrollTo(0,0);
     },[]);
-
-    const copyToClipboard = () => {
-        navigator.clipboard.writeText(url)
-            .then(() => {
-                toast.success('Referral Link copied.')
-            })
-            .catch((error) => {
-                console.error("Failed to copy text to clipboard:", error);
-            });
-    };
 
     return (
         <Layout>
@@ -37,7 +41,7 @@ const Invite = () => {
                 </div>
                 <div className='mt-4'>
                     <h1 className='sm:text-5xl text-2xl font-bold gradient-text text-center'>
-                        Invite Your Friend
+                        Invite a Friend
                     </h1>
                     <p className='text-center mt-4 text-dark'>
                         Invite friend with your invitation code and earn                       
@@ -48,11 +52,12 @@ const Invite = () => {
                                 <span>
                                     Your Referral Code
                                 </span>
-                                <i 
-                                className="uil uil-copy text-2xl cursor-pointer "
-                                title='Copy your referral Link'
-                                onClick={copyToClipboard}
-                                ></i>
+                                <div 
+                                onClick={copyToClipboard} className='cursor-pointer'
+                                title='Copy Your referral link'
+                                >
+                                    {copied ? <CopySuccessSvg /> : <CopySvg />}
+                                </div>
                             </label>
                             <input 
                             type="text" 

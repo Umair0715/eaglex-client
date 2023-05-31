@@ -33,7 +33,7 @@ const filters = [
 const Invests = () => {
     const [activeFilter , setActiveFilter] = useState(filters[0]);
 
-    const [status , setStatus] = useState('');
+    const [status , setStatus] = useState('running');
     const [invests , setInvests] = useState([]);
     const { user } = useSelector(state => state.auth);
 
