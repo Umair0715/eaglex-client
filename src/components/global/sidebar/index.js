@@ -103,7 +103,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li 
-                        className={`${isActive('wallet-history') ? 'active' : ''} sideMenu-item md:block hidden`}
+                        className={`${isActive('wallet-history') ? 'active' : ''} sideMenu-item`}
                         onClick={() => setShowDrawer(false)}
                         >
                             <Link to='/wallet-history'>   
