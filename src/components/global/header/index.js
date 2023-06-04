@@ -3,7 +3,7 @@ import { useDrawerContext } from 'context/DrawerContext';
 import useToggle from 'hooks/useToggle';
 import { useRef } from 'react';
 import useClickOutside from 'utils/clickOutside';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Hamburger from 'assets/svgs/hamburger.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from 'assets/svgs/Logo.svg';
@@ -17,6 +17,7 @@ const Header = () => {
     const { showDrawer , setShowDrawer } = useDrawerContext();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const { loading , user } = useSelector(state => state.auth);
 
@@ -43,7 +44,13 @@ const Header = () => {
                 className='w-[150px] h-[40px]' 
                 />
             </div> */}
-            <div className='flex items-center sm:gap-8 gap-3'>
+            <div className='flex items-center sm:gap-6 gap-3'>
+                    {
+                        location.pathname.split('/').includes('deposits') && 
+                        <Link to='/deposit'>
+                            <button className='btn-primary py-1.5 px-4 sm:text-sm text-xs'>Deposit Now</button>
+                        </Link>
+                    }
                     <div className='relative'>
                     <div className='bg-darkSlate rounded-full w-[35px] h-[35px] flex items-center justify-center text-grayText text-xl cursor-pointer border p-0.5'
                     onClick={() => toggleMenu()}>

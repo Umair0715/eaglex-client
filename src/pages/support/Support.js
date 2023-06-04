@@ -59,12 +59,15 @@ const Support = ({ selectedChat = users[0] }) => {
 
     return (
         <Layout>
-            <Heading title='Need help? Message us' icon='envelope' />
             {
                 isLoading 
                 ? 
-                    <Loader />
+                <Loader />
                 :
+                    <>
+                    <Heading 
+                    title={chatExist ? 'Live Chat Support' : 'Need help? Message us'} icon='envelope' 
+                    />
                     <div className='w-full shadow-bg  mt-6'>
                         {
                             chatExist
@@ -94,6 +97,7 @@ const Support = ({ selectedChat = users[0] }) => {
                                 </div>
                         }
                     </div>
+                    </>
             }
         </Layout>
     )

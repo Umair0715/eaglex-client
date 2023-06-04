@@ -21,7 +21,7 @@ const WithdrawSuccess = () => {
                 <div className='mt-8'>
                     <h1 className='sm:text-5xl text-2xl font-bold gradient-text text-center'>Withdraw Successfull</h1>
                     <p className='text-center mt-4 text-dark'>
-                        Withdraw Request processing will took 4 to 5 business days                        
+                        We transfer funds immediately. In some cases, it may take 24-48 hours if any issues arise.                        
                     </p>
                     <div className='mt-6 flex items-center justify-center'>
                         <Link to='/dashboard' className="btn-primary py-2 px-12">

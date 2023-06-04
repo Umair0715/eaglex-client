@@ -43,9 +43,10 @@ function App() {
             <ToastContainer 
                 style={{fontSize: 15}}
                 position="top-center"
-                autoClose={2500}
+                autoClose={2000}
                 closeOnClick
                 pauseOnHover
+                hideProgressBar
             />
             <Routes>
                 <Route path='/' element={<Home />} />

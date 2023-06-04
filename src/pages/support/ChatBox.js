@@ -13,6 +13,7 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
     const [messageType , setMessageType] = useState('text');
     const [fileName , setFileName] = useState('');
     const [newMessage , setNewMessage] = useState('');
+    const [isTyping , setIsTyping] = useState(false);
 
     const { user } = useSelector(state => state.auth);
 
@@ -20,7 +21,10 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
         if(!socket) return;
         socket.on('new-message-recieved', (message) => {
             setNewMessage(message);
-        })
+        });
+
+        socket.on('start-typing' , () => setIsTyping(true));
+        socket.on('stop-typing' , () => setIsTyping(false));
     }, [socket]);
 
     useEffect(() => {
@@ -73,18 +77,36 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
         }
     }
 
+
+    const [typingTimeout , setTypingTimeout] = useState(false);
+    const handleInputChange = (e) => {
+        setMessage(e.target.value);
+        socket?.emit('start-typing' , chat?._id);
+
+        if (typingTimeout) clearTimeout(typingTimeout);
+
+        setTypingTimeout(
+            setTimeout(() => {
+                socket?.emit("stop-typing" , chat?._id);
+            }, 1000)
+        );
+    }
+
     return (
         <div>
             <div className='py-4 px-4 flex items-center gap-4 border-b'>
-                <div className='border rounded-full p-1'>
+                <div className='border rounded-full p-1 relative'>
                     <img 
                     src={baseURL + '/user/default.png'} 
                     alt={chat?.admin?.firstName} 
                     className='w-[50px] h-[50px] rounded-full object-cover'
                     />
+                    <div className='absolute top-2 right-0 bg-gradient rounded-full w-[10px] h-[10px]'>
+
+                    </div>
                 </div>
                 <div className='font-semibold'>
-                    <p>{chat?.admin?.firstName + " " + chat?.admin?.lastName}</p>
+                    <p>Support Agent</p>
                     {/* <p className='text-sm text-gray-500'>{chat?.admin?.phone}</p> */}
                 </div>
             </div>
@@ -112,13 +134,13 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                                                 {item?.message}
                                             </div>
                                             : 
-                                            <div className={`w-fit max-w-[300px] max-h-[250px] h-auto rounded-md border p-3 text-[15px] 
+                                            <div className={`max-w-[300px] overflow-hidden rounded-md border text-[15px] 
                                             ${item?.sender?._id === user?._id ? "bg-primary text-white" : "bg-gray-200 text-black"}
                                             `}>
                                                 <img 
                                                 src={baseURL + item?.message}
                                                 alt="" 
-                                                className='w-full h-full object-cover'
+                                                className='w-full h-auto'
                                                 />
                                             </div>
                                         }
@@ -137,6 +159,7 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                     </div>
             }
             </div>
+            { isTyping && <p className='ml-2'>Typing...</p>}
             <div className='w-full table-header-shadow rounded-md flex items-center gap-3 mt-4 border-t border-t-gray-300'>
                 <form 
                 className='flex items-center justify-between w-full px-3 gap-4 py-6'
@@ -159,7 +182,7 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                         placeholder='Write message here...'
                         className='rounded-full w-full py-2 px-4   bg-transparent outline-none  border border-gray-400 focus:border-primary'
                         value={messageType === 'file' ? fileName : message}
-                        onChange={e => setMessage(e.target.value)}
+                        onChange={handleInputChange}
                         readOnly={messageType==='file'}
                         />
                     </div>

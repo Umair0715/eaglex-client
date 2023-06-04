@@ -5,7 +5,9 @@ import Heading from 'components/global/Heading'
 import Input from 'components/global/Input'
 import Layout from 'components/global/Layout'
 import Loader from 'components/global/Loader'
+import SelectBox from 'components/global/SelectBox'
 import Axios from 'config/api'
+import banks from 'data/banks'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
@@ -100,9 +102,11 @@ const Deposit = () => {
                         <div>
                             <form className='flex flex-col gap-4' onSubmit={submitHandler}>
                                 <div className='flex items-center sm:flex-row flex-col gap-4'>
-                                    <Input
-                                    label='Bank Name'
-                                    placeholder='Enter bank name'
+                                    <SelectBox
+                                    label='Sender Bank Name'
+                                    options={banks?.map(item => (
+                                        { label : item?.bank_name , value : item?.bank_name }
+                                    ))}
                                     value={bankName}
                                     setValue={setBankName}
                                     required
@@ -117,7 +121,7 @@ const Deposit = () => {
                                 </div>
                                 <div className='flex items-center sm:flex-row flex-col gap-4'>
                                     <Input
-                                    label='Account Number'
+                                    label='Sender Account Number'
                                     placeholder='Enter Account Number'
                                     value={accountNo}
                                     setValue={setAccountNo}

@@ -126,7 +126,7 @@ const DepositsTable = () => {
                         }
                     </>
                 :
-                    <ItemNotFound />
+                    <ItemNotFound message='No History Found.' />
             }
         </div>
     )

@@ -2,7 +2,9 @@ import BackBtn from 'components/global/BackBtn';
 import Heading from 'components/global/Heading';
 import Input from 'components/global/Input';
 import Layout from 'components/global/Layout';
+import SelectBox from 'components/global/SelectBox';
 import Axios from 'config/api';
+import banks from 'data/banks';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -36,6 +38,8 @@ const AddBank = () => {
             toast.success(message);
             if(searchParams.get('withdraw')){
                 navigate('/withdraw')
+            }else {
+                navigate('/change-bank')
             }
             setLoading(false);
         } catch (error) {
@@ -61,11 +65,14 @@ const AddBank = () => {
                         onSubmit={handleSubmit}
                         >
                             <div className='flex items-center sm:flex-row flex-col gap-4'>
-                                <Input
+                                <SelectBox
                                 label='Bank Name'
-                                placeholder='Enter Bank Name'
+                                options={banks?.map(item => (
+                                    { label : item?.bank_name , value : item?.bank_name }
+                                ))}
                                 value={bankName}
                                 setValue={setBankName}
+                                required
                                 />
                                 <Input
                                 label='Account Holder Name'

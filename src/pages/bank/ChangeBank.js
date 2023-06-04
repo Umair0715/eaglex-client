@@ -3,7 +3,9 @@ import Heading from 'components/global/Heading';
 import Input from 'components/global/Input';
 import Layout from 'components/global/Layout';
 import Loader from 'components/global/Loader';
+import SelectBox from 'components/global/SelectBox';
 import Axios from 'config/api';
+import banks from 'data/banks';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
@@ -81,11 +83,14 @@ const ChangeBank = () => {
                                 onSubmit={handleSubmit}
                                 >
                                     <div className='flex items-center sm:flex-row flex-col gap-4'>
-                                        <Input
+                                        <SelectBox
                                         label='Bank Name'
-                                        placeholder='Enter Bank Name'
+                                        options={banks?.map(item => (
+                                            { label : item?.bank_name , value : item?.bank_name }
+                                        ))}
                                         value={bankName}
                                         setValue={setBankName}
+                                        required
                                         />
                                         <Input
                                         label='Account Holder Name'
