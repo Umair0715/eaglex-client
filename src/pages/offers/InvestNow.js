@@ -86,7 +86,14 @@ const InvestNow = () => {
                 offer 
                 ? 
                     <div>
-                        <BackBtn />
+                        <div className="flex items-center justify-between">
+                            <BackBtn />
+                            <Link to='/deposit'>
+                                <button className='btn-primary py-1.5 px-4 sm:text-sm text-xs'>
+                                    Deposit Now
+                                </button>
+                            </Link>
+                        </div>
                         <div className='w-full h-[250px] rounded-lg relative mt-4'
                         style={{
                             backgroundImage : `url(${Company}`,
@@ -137,15 +144,21 @@ const InvestNow = () => {
                                     amount && 
                                     <div className='mt-6 flex flex-col gap-2'>
                                         <div className='flex items-center'>
-                                            <p className='w-[120px] font-medium'>Offer Profit : </p>
+                                            <p className='w-[120px] font-medium'>Daily Profit : </p>
                                             <span>
                                                 {offer?.profit + '%' + ' = ' + ((Number(amount)/100) * offer?.profit).toFixed(2) + " PKR"}
                                             </span>
                                         </div>
                                         <div className='flex items-center'>
+                                            <p className='w-[120px] font-medium'>Total Profit : </p>
+                                            <span>
+                                                {offer?.profit + '*' + offer?.timePeriod + ' = ' + ((Number(amount)/100) * (offer?.profit * offer?.timePeriod)).toFixed(2) + " PKR"}
+                                            </span>
+                                        </div>
+                                        <div className='flex items-center'>
                                             <p className='w-[120px] font-medium'>Return Profit : </p>
                                             <span>
-                                                {(((Number(amount)/100) * offer?.profit) + Number(amount)).toFixed(2) + ' PKR'}
+                                                {(((Number(amount)/100) * (offer?.profit * offer?.timePeriod)) + Number(amount)).toFixed(2) + ' PKR'}
                                             </span>
                                         </div>
                                     </div>

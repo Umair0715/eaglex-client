@@ -81,7 +81,7 @@ const WalletHistory = () => {
                                                 item?.action === '+' ? 'text-primary' : item?.action === '-' ? 'text-red-500' : ''}
                                             `}
                                             >
-                                                {item?.action === '+' ? 'Added' : 'Detucted'}
+                                                {item?.action === '+' ? 'Added' : 'Deducted'}
                                             </Td>
                                             <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
                                                 {moment(item?.createdAt).format('DD MMM YYYY')}

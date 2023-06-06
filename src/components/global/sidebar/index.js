@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDrawerContext } from 'context/DrawerContext';
 import useClickOutside from 'utils/clickOutside';
-import Logo from 'assets/svgs/Logo.svg';
+import Logo from 'assets/images/main-logo.png';
 import Bg from 'assets/images/homeBg.jpg';
 import { logout } from 'redux/actions/authActions';
 import { useDispatch } from 'react-redux';
@@ -43,7 +43,7 @@ const Sidebar = () => {
                 <div className='overflow-auto'>
                     <div className='flex items-center justify-center border-b pb-4 '>
                         <Link to='/' className='text-2xl font-semibold'>
-                            <img src={Logo} alt="" />                        
+                            <img src={Logo} alt="" className='w-[130px] scale-[1.3]' />                        
                         </Link>
                     </div>
                     <ul className='sideMenu-list mt-6 text-dark h-full'>

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ScrollableFeed from 'react-scrollable-feed';
 import { ClipLoader } from 'react-spinners';
 import toastError from 'utils/toastError';
+import ImagePopup from './ImagePopup';
 
 const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
     const imgRef = useRef();
@@ -14,6 +15,9 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
     const [fileName , setFileName] = useState('');
     const [newMessage , setNewMessage] = useState('');
     const [isTyping , setIsTyping] = useState(false);
+
+    const [selectedImage , setSelectedImage] = useState('');
+    const [showImagePopup , setShowImagePopup] = useState(false);
 
     const { user } = useSelector(state => state.auth);
 
@@ -92,6 +96,11 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
         );
     }
 
+    const imageClickHandler = (image) => {
+        setSelectedImage(image);
+        setShowImagePopup(true);
+    }
+
     return (
         <div>
             <div className='py-4 px-4 flex items-center gap-4 border-b'>
@@ -134,9 +143,11 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                                                 {item?.message}
                                             </div>
                                             : 
-                                            <div className={`max-w-[300px] overflow-hidden rounded-md border text-[15px] 
+                                            <div className={`max-w-[300px] overflow-hidden rounded-md border text-[15px] cursor-pointer
                                             ${item?.sender?._id === user?._id ? "bg-primary text-white" : "bg-gray-200 text-black"}
-                                            `}>
+                                            `}
+                                            onClick={() => imageClickHandler(item?.message)}
+                                            >
                                                 <img 
                                                 src={baseURL + item?.message}
                                                 alt="" 
@@ -171,6 +182,7 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                         ref={imgRef} 
                         onChange={handleFileChange}
                         hidden 
+                        accept=".jpeg, .jpg, .png"
                         />
                         <div className='cursor-pointer round-shadow rounded-full w-[40px] h-[40px] bg-gray-200 flex items-center justify-center text-xl'
                         onClick={() => imgRef.current.click() }>
@@ -202,6 +214,14 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                     </div>
                 </form>
             </div>
+
+            { 
+                showImagePopup && <ImagePopup 
+                setShowImagePopup={setShowImagePopup} 
+                selectedImage={selectedImage}
+                />
+            }
+
         </div>
     )
 }
