@@ -7,8 +7,8 @@ import { ClipLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
 import toastError from 'utils/toastError'
 
-const ForgotPassword = () => {
-    const [phone , setPhone] = useState('');
+const VerifyOtp = () => {
+    const [otp , setOtp] = useState('');
     const [loading , setLoading] = useState(false);
 
     const navigate = useNavigate();
@@ -17,9 +17,9 @@ const ForgotPassword = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const { data : { data : { message } } } = await Axios.post(`/user/forgot-password` , { phone });
-            toast.success('Otp sent to your phone.');
-            navigate('/verify-otp');
+            const { data : { data : { message , doc } } } = await Axios.post(`/user/verify-otp` , { otp });
+            toast.success(message);
+            navigate(`/reset-password/${doc?.otp}`);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -35,18 +35,19 @@ const ForgotPassword = () => {
             <div className='flex items-center justify-center w-full calc-height px-4'>
                 <div className='shadow-bg p-4 sm:w-[600px] w-full '>
                     <h1 className='gradient-text text-3xl font-semibold text-center '>
-                        Forgot Password
+                        Verify Otp
                     </h1>
+                    
                     <form 
                     className='flex flex-col gap-4 mt-8'
                     onSubmit={handleSubmit}
                     >
                         <Input
                         type='number'
-                        label='Phone'
-                        placeholder='Enter your phone number'
-                        value={phone}
-                        setValue={setPhone}
+                        label='Check your phone for the OTP and enter it below to reset your password.'
+                        placeholder='Enter Your otp'
+                        value={otp}
+                        setValue={setOtp}
                         />
                         <div className='my-4'>
                             <button
@@ -58,14 +59,14 @@ const ForgotPassword = () => {
                                     ? 
                                         <ClipLoader size={20} color='white' />
                                     : 
-                                        'Send Otp'
+                                        'Verify Otp'
                                 }
                             </button>
                         </div>
                     </form>
                     <div className='text-sm my-4'>
-                        <Link to='/' className='underline text-primary'>
-                            Back To Home
+                        <Link to='/forgot-password' className='underline text-primary'>
+                            Back 
                         </Link>
                     </div>
                 </div>
@@ -74,4 +75,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword
+export default VerifyOtp

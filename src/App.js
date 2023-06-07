@@ -30,6 +30,7 @@ import Invite from "pages/invite";
 import { useApi } from "config/api";
 import ProtectedRoute from "ProtectedRoute";
 import { useSelector } from "react-redux";
+import VerifyOtp from "pages/auth/VerifyOtp";
 
 
 
@@ -56,10 +57,13 @@ function App() {
                 <Route path='/register' element={
                     user ? <Navigate to="/dashboard" replace /> : <Register />} 
                 />
+                <Route path='/verify-otp' element={
+                    user ? <Navigate to="/dashboard" replace /> : <VerifyOtp />} 
+                />
                 <Route path='/forgot-password' element={
                     user ? <Navigate to="/dashboard" replace /> : <ForgotPassword />} 
                 />
-                <Route path='/reset-password' element={
+                <Route path='/reset-password/:otp' element={
                     user ? <Navigate to="/dashboard" replace /> : <ResetPassword />} 
                 />
                 <Route path='/dashboard' element={

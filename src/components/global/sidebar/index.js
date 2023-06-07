@@ -42,7 +42,7 @@ const Sidebar = () => {
                 <div className='sidebar-overlay absolute top-0 left-0 w-full h-full'></div>
                 <div className='overflow-auto'>
                     <div className='flex items-center justify-center border-b pb-4 '>
-                        <Link to='/' className='text-2xl font-semibold'>
+                        <Link to='/dashboard' className='text-2xl font-semibold'>
                             <img src={Logo} alt="" className='w-[130px] scale-[1.3]' />                        
                         </Link>
                     </div>

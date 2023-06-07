@@ -18,8 +18,8 @@ const WalletHistory = () => {
     const [currentPage , setCurrentPage] = useState(1);
     const [pages , setPages] = useState(1);
 
-    const { isLoading , data } = useQuery('fetch-wallet-history' , () => {
-        return fetcher('/wallet-history/my' , user)
+    const { isLoading , data } = useQuery(['fetch-wallet-history' , currentPage] , () => {
+        return fetcher(`/wallet-history/my?page=${currentPage}` , user)
     });
 
     useEffect(() => {
@@ -100,6 +100,7 @@ const WalletHistory = () => {
                                 currentPage={currentPage}
                                 pageCount={pages}
                                 setPage={setCurrentPage}
+                                redux={false}
                                 />
                             }
                         </div>
