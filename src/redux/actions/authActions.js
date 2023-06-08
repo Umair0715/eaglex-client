@@ -39,11 +39,11 @@ export const updateProfile = (updatedData) => async (dispatch , getState) => {
     dispatch(setUpdateLoading(true))
     const token = getState().auth.user.token;
     try {
-        const { data : { data : { doc , message } } } = await Axios.put('/user/profile' , { updatedData } , {
+        const { data : { data : { doc , message } } } = await Axios.put('/user/profile' , updatedData  , {
             headers : {
                 Authorization : `Bearer ${token}`
             }
-        } );
+        });
         toast.success(message);
         dispatch(setUser({...doc , token }));
         localStorage.setItem('user' , JSON.stringify({...doc , token }));

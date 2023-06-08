@@ -55,7 +55,7 @@ const Header = () => {
                     <div className='bg-darkSlate rounded-full w-[35px] h-[35px] flex items-center justify-center text-grayText text-xl cursor-pointer border p-0.5'
                     onClick={() => toggleMenu()}>
                         <img 
-                        src={userImage} 
+                        src={baseURL + user?.image} 
                         alt={`User`} 
                         className='w-full h-full rounded-full object-cover'
                         />
@@ -70,7 +70,7 @@ const Header = () => {
                                 <div className='flex items-center gap-2 py-3 px-3 border-b'>
                                     <div className='bg-darkSlate rounded-full w-[35px] h-[35px] flex items-center justify-center text-grayText text-xl cursor-pointer'>
                                         <img 
-                                        src={`${baseURL}/user/${user?.image}`} 
+                                        src={`${baseURL + user?.image}`} 
                                         alt={`User`} 
                                         className='w-full h-full rounded-full object-cover'
                                         />
