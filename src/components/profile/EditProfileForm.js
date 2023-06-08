@@ -30,7 +30,7 @@ const EditProfileForm = () => {
                     }
                 });
                 setProfile(doc);
-                setImage(`${baseURL}/${doc?.image}`);
+                setImage(doc?.image ? baseURL + doc?.image : baseURL + '/users/default.png');
                 setFirstName(doc?.firstName);
                 setLastName(doc?.lastName);
                 setFetchLoading(false);
