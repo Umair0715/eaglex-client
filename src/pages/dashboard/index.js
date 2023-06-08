@@ -27,11 +27,12 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (data) {
-            setUser({...data?.data?.data?.user , token : user?.token});
+            dispatch(setUser({...data?.data?.data?.user , token : user?.token}));
             localStorage.setItem('user' , JSON.stringify({...data?.data?.data?.user , token : user?.token }));
             setOffers(data?.data?.data?.offers);
         }
     }, [data]);
+
 
     return (
         <Layout showNav={true} home>
