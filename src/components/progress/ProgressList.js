@@ -112,7 +112,7 @@ const ProgressList = ({ invests }) => {
                                                 ? 
                                                     <ClipLoader size={20} color='white' />
                                                 : 
-                                                    'Received'
+                                                    'Claim'
                                             }
                                         </button>    
                                 }
