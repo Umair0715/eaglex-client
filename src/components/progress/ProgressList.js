@@ -39,14 +39,28 @@ const ProgressList = ({ invests }) => {
                 invests?.map((item,i) => (
                     <div className='shadow-bg p-4'>
                         <div className='flex flex-col gap-4'>
-                            <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
-                                <h6 className='font-medium'>Profit Return</h6>
+                        <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
+                                <h6 className='font-medium'>Daily Profit</h6>
                                 <p className='text-primary'>{item?.offerProfit}%</p>
                             </div>
                             <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
-                                <h6 className='font-medium'>Return Profit in amount</h6>
+                                <h6 className='font-medium'>Total Profit in %</h6>
+                                <p className='text-primary'>{item?.totalProfit?.toFixed(1)}%</p>
+                            </div>
+                            <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
+                                <h6 className='font-medium'>Total Profit in Amount</h6>
+                                <p className='text-primary'>{item?.returnProfitAmount?.toFixed(2)}</p>
+                            </div>
+                            <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
+                                <h6 className='font-medium'>Invest + Profit  </h6>
                                 <p className='text-primary'>
-                                    {item?.returnProfitAmount}
+                                    {item?.totalProfitReturnInAmount?.toFixed(2)}
+                                </p>
+                            </div>
+                            <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
+                                <h6 className='font-medium'>Offer Name</h6>
+                                <p className='text-primary'>
+                                    {item?.offer?.name}
                                 </p>
                             </div>
                             <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
