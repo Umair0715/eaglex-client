@@ -21,6 +21,7 @@ const Deposit = () => {
 
     const [settings , setSettings] = useState();
     const [bankName , setBankName] = useState('');
+    const [otherBank , setOtherBank] = useState('');
     const [accountHolder , setAccountHolder] = useState('');
     const [accountNo , setAccountNo] = useState('');
     const [amount , setAmount] = useState('');
@@ -42,7 +43,10 @@ const Deposit = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const depositData = { bankName , accountHolder , accountNo , amount ,proof };
+            const depositData = { 
+                bankName : bankName === 'Other' ? otherBank : bankName, 
+                accountHolder , accountNo , amount ,proof 
+            };
             const { data : { data : { message } } } = await Axios.post('/deposit' , depositData , {
                 headers : {
                     Authorization : `Bearer ${user?.token}`
@@ -89,7 +93,7 @@ const Deposit = () => {
                                     />
                                 </div>
                             </div>
-                            <div className='mt-6 text-primary text-sm leading-[1.5]'>
+                            <div className='mt-6 text-red-500 text-sm leading-[1.5]'>
                                 <b>NOTE : </b> Send amount (You want to deposit) to the above mentioned account. And upload the payment proof below. The amount will be added to your wallet once admin verify the transaction.
                             </div>
                         </div>
@@ -105,12 +109,24 @@ const Deposit = () => {
                                     <SelectBox
                                     label='Sender Bank Name'
                                     options={banks?.map(item => (
-                                        { label : item?.bank_name , value : item?.bank_name }
+                                        { label : item?.bank_name  , value : item?.bank_name }
                                     ))}
                                     value={bankName}
                                     setValue={setBankName}
                                     required
                                     />
+                                    {
+                                        bankName === 'Other'
+                                        && 
+                                        <Input
+                                        label='Other Bank Name'
+                                        placeholder='Ex : Habib Bank Limited'
+                                        value={otherBank}
+                                        setValue={setOtherBank}
+                                        required
+                                        />
+                                    
+                                    }
                                     <Input
                                     label='Account Holder'
                                     placeholder='Enter account holder name'

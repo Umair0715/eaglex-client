@@ -17,7 +17,7 @@ const Offers = () => {
     const { user } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    const { isLoading , data } = useQuery('all-offers' , () => fetcher('/offer' , user));
+    const { isLoading , data } = useQuery('all-offers' , () => fetcher('/offer/total' , user));
 
     useEffect(() => {
         window.scrollTo(0,0)

@@ -4,7 +4,6 @@ import ItemNotFound from 'components/global/ItemNotFound';
 import Layout from 'components/global/Layout'
 import Loader from 'components/global/Loader';
 import InvestList from 'components/invests/InvestList';
-import InvestTable from 'components/invests/InvestsTable';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
@@ -83,6 +82,7 @@ const Invests = () => {
                         ? 
                             <InvestList 
                             invests={invests}
+                            status={status}
                             />
                         : 
                             <ItemNotFound />

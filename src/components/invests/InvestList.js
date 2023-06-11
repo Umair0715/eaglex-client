@@ -1,9 +1,70 @@
 import EarningStats from 'components/dashboard/EarningStats'
+import Axios from 'config/api'
 import moment from 'moment/moment'
-import React from 'react'
+import React, { useState } from 'react'
+import { confirmAlert } from 'react-confirm-alert'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { ClipLoader } from 'react-spinners'
+import { toast } from 'react-toastify'
+import toastError from 'utils/toastError'
 
 const InvestList = ({ invests }) => {
-    console.log({ invests })
+    const navigate = useNavigate();
+    const { user } = useSelector(state => state.auth);
+    const [loading , setLoading] = useState(false);
+
+    const claimProfitHandler = (id) => {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: `Are you sure? You want to claim your profit?`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: async () => {
+                        try {
+                            setLoading(true);
+                            const { data : { data : { message } } } = await Axios.get(`/invest/claim/${id}` , {
+                                headers : {
+                                    Authorization : `Bearer ${user?.token}`
+                                }
+                            });
+                            toast.success(message);
+                            navigate('/dashboard');
+                            setLoading(false);
+                        } catch (error) {
+                            setLoading(false);
+                            toastError(error);
+                        }
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => ''
+                }
+            ]
+        });
+    }
+
+    // const claimProfitHandler = async (id) => {
+    //     if(window.confirm('Are you sure? You want to claim your profit?')){
+    //         try {
+    //             setLoading(true);
+    //             const { data : { data : { message } } } = await Axios.get(`/invest/claim/${id}` , {
+    //                 headers : {
+    //                     Authorization : `Bearer ${user?.token}`
+    //                 }
+    //             });
+    //             toast.success(message);
+    //             navigate('/dashboard');
+    //             setLoading(false);
+    //         } catch (error) {
+    //             setLoading(false);
+    //             toastError(error);
+    //         }
+    //     }
+    // }
+
     return (
         <div className='flex flex-col gap-8'>
             {
@@ -73,15 +134,39 @@ const InvestList = ({ invests }) => {
                             </div>
                             <div className='flex items-center justify-between pb-4 sm:text-base text-sm'>
                                 <h6 className='font-medium text-xl'>Status</h6>
-                                <p className='text-primary border border-primary py-2 px-3 rounded-lg'>
-                                    {item?.status}
-                                </p>
+                                {
+                                    item?.status === 'completed'
+                                    ? 
+                                        <button 
+                                        className='btn-primary py-2 px-10 '
+                                        disabled={loading}
+                                        onClick={() => claimProfitHandler(item?._id)}
+                                        >
+                                            {
+                                                loading 
+                                                ? 
+                                                    <ClipLoader size={20} />
+                                                : 
+                                                    'Claim Profit'
+                                                
+                                            }
+                                        </button>
+                                    :
+                                        <p className='border rounded-md border-primary py-2 px-6 text-primary capitalize'>{item?.status}</p>
+                                }
                             </div>
-
                         </div>
                     </div>
                 ))
             }
+            {/* <div className='flex items-center justify-center'>
+                <button 
+                className='btn-primary py-2 px-8'
+                // disabled={loadMoreLoding}
+                >
+                    Load More
+                </button>
+            </div> */}
         </div>
     )
 }

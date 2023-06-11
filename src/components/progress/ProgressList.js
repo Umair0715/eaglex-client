@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 import { toast } from 'react-toastify'
+import toastError from 'utils/toastError'
 
 const ProgressList = ({ invests }) => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const ProgressList = ({ invests }) => {
                 setLoading(false);
             } catch (error) {
                 setLoading(false);
-                toast.error(error);
+                toastError(error)
             }
         }
     }

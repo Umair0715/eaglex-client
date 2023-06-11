@@ -94,8 +94,6 @@ const WithdrawRequestDetails = () => {
                                             {item?.description}
                                         </p>
                                     </div>
-
-
                                 </div>
                                 {
                                     item?.proof &&

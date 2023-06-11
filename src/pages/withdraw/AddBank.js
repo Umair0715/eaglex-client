@@ -12,9 +12,9 @@ import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import toastError from 'utils/toastError';
 
-
 const AddBank = () => {
     const [bankName , setBankName] = useState('');
+    const [otherBank , setOtherBank] = useState('');
     const [accountHolder , setAccountHolder] = useState('');
     const [accountNo , setAccountNo] = useState('');
     const [loading , setLoading] = useState(false);
@@ -29,7 +29,10 @@ const AddBank = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const bankData = { bankName , accountHolder , accountNo }
+            const bankData = { 
+                bankName : bankName === 'Other' ? otherBank : bankName , 
+                accountHolder , accountNo 
+            }
             const { data : { data : { message } } } = await Axios.post('/bank' , bankData , {
                 headers : {
                     Authorization : `Bearer ${user?.token}`
@@ -37,10 +40,12 @@ const AddBank = () => {
             });
             toast.success(message);
             if(searchParams.get('withdraw')){
-                navigate('/withdraw')
+                navigate('/withdraw' , { replace : true })
             }else {
-                navigate('/change-bank')
+                navigate('/change-bank' , { replace : true })
             }
+            setBankName('');
+            setOtherBank('');
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -68,17 +73,30 @@ const AddBank = () => {
                                 <SelectBox
                                 label='Bank Name'
                                 options={banks?.map(item => (
-                                    { label : item?.bank_name , value : item?.bank_name }
+                                    { label : item?.bank_name  , value : item?.bank_name }
                                 ))}
                                 value={bankName}
                                 setValue={setBankName}
                                 required
                                 />
+                                {
+                                    bankName === 'Other'
+                                    && 
+                                    <Input
+                                    label='Other Bank Name'
+                                    placeholder='Ex : Habib Bank Limited'
+                                    value={otherBank}
+                                    setValue={setOtherBank}
+                                    required
+                                    />
+                                    
+                                }
                                 <Input
                                 label='Account Holder Name'
                                 placeholder='Enter account holder Name'
                                 value={accountHolder}
                                 setValue={setAccountHolder}
+                                required
                                 />
                             </div>
                             <div>
@@ -87,6 +105,7 @@ const AddBank = () => {
                                 placeholder='Enter your Account Number'
                                 value={accountNo}
                                 setValue={setAccountNo}
+                                required
                                 />
                             </div>
                             <div className='w-fit my-4'>
