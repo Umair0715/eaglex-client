@@ -50,7 +50,9 @@ function App() {
                 hideProgressBar
             />
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={
+                    user ? <Navigate to="/dashboard" replace /> : <Home />
+                } />
                 <Route path='/login' element={
                     user ? <Navigate to="/dashboard" replace /> : <Login />
                 } />

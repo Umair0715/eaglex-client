@@ -3,7 +3,8 @@ import { useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDrawerContext } from 'context/DrawerContext';
 import useClickOutside from 'utils/clickOutside';
-import Logo from 'assets/images/main-logo.png';
+// import Logo from 'assets/images/main-logo.png';
+import Logo from 'assets/svgs/mainLogo.svg';
 import Bg from 'assets/images/homeBg.jpg';
 import { logout } from 'redux/actions/authActions';
 import { useDispatch } from 'react-redux';
@@ -36,14 +37,14 @@ const Sidebar = () => {
                 </div>
             }
             <div 
-            className={`sidebar ${showDrawer ? 'show' : '' } fixed top-0 md:left-0 -left-[200%] w-[260px]  overflow-auto py-4 h-full z-50 border-r bg-pure`} 
+            className={`sidebar ${showDrawer ? 'show' : '' } fixed top-0 md:left-0 -left-[200%] w-[260px]  overflow-auto pb-4 h-full z-50 border-r bg-pure`} 
             ref={sidebarRef}
             >
                 <div className='sidebar-overlay absolute top-0 left-0 w-full h-full'></div>
                 <div className='overflow-auto'>
-                    <div className='flex items-center justify-center border-b pb-4 '>
+                    <div className='flex items-center justify-center border-b pb-6 pt-6'>
                         <Link to='/dashboard' className='text-2xl font-semibold'>
-                            <img src={Logo} alt="" className='w-[130px] scale-[1.3]' />                        
+                            <img src={Logo} alt="" className='w-[90px] scale-[1.3]' />                        
                         </Link>
                     </div>
                     <ul className='sideMenu-list mt-6 text-dark h-full'>
@@ -157,24 +158,14 @@ const Sidebar = () => {
                                 <span>Contact Us</span>
                             </Link>
                         </li>
-                        {/* <li 
-                        className={`${isActive('/privacy-policy') ? 'active' : ''} sideMenu-item`}
-                        onClick={() => setShowDrawer(false)}
-                        >
-                            <Link to='/privacy-policy'>   
-                                <i className="uil uil-keyhole-circle"></i>
-                                <span>Privacy Policy</span>
-                            </Link>
-                        </li>
                         <li 
-                        className={`${isActive('/terms-and-conditions') ? 'active' : ''} sideMenu-item`}
-                        onClick={() => setShowDrawer(false)}
+                        className='sideMenu-item'
                         >
-                            <Link to='/terms-and-conditions'>   
-                                <i className="uil uil-ban"></i>
-                                <span>Terms & Conditions</span>
-                            </Link>
-                        </li> */}
+                            <a href='https://information.eaglexgroup.com' target='_blank'>   
+                                <i className="uil uil-book-reader"></i>
+                                <span>About Eaglex</span>
+                            </a>
+                        </li>
 
                         
                         <li 

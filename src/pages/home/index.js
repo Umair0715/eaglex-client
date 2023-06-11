@@ -2,8 +2,10 @@ import Navbar from 'components/global/navbar';
 import HomeBg from 'assets/images/homeBg.jpg';
 import React from 'react'
 import { Link } from 'react-router-dom'
+import AboutLink from 'components/global/AboutLink';
 
 const Home = () => {
+
     return (
         <div className='h-screen' style={{
             backgroundImage : `url(${HomeBg})` ,
@@ -32,6 +34,10 @@ const Home = () => {
                                 Register
                             </Link>
                         </div>
+                        <AboutLink 
+                        color='text-gray-200' 
+                        hoverColor='hover:text-white' 
+                        />
                 </div>
             </div>
         </div>

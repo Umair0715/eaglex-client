@@ -7,6 +7,7 @@ import { Link , useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import { login } from 'redux/actions/authActions';
 import ReCAPTCHA from "react-google-recaptcha";
+import AboutLink from 'components/global/AboutLink';
 
 
 
@@ -64,7 +65,7 @@ const Login = () => {
                         </Link>
                         <div>
                         <ReCAPTCHA
-                            sitekey='6LcE7xgmAAAAAF3VteVe6xO9U6LbGvlefVUyXscC'
+                            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                             onChange={() => {
                                 setIsCaptchaChecked(true);
                             }}
