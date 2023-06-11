@@ -31,6 +31,7 @@ import { useApi } from "config/api";
 import ProtectedRoute from "ProtectedRoute";
 import { useSelector } from "react-redux";
 import VerifyOtp from "pages/auth/VerifyOtp";
+import NotFound from "pages/notFound";
 
 
 
@@ -227,6 +228,7 @@ function App() {
                     </ProtectedRoute>
                 }
                 />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </div> 
     );
