@@ -39,7 +39,7 @@ const OfferDetails = () => {
                 : 
                     <div>
                         <BackBtn />
-                        <div className='w-full h-[250px] rounded-lg relative mt-4'
+                        <div className='w-full h-[250px] rounded-lg relative mt-4 px-4'
                         style={{
                             backgroundImage : `url(${Company}`,
                             backgroundSize : 'cover' ,
@@ -68,7 +68,7 @@ const OfferDetails = () => {
                                 <div className='flex flex-col gap-4'>
                                     <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                         <h6 className='font-medium'>Company Name</h6>
-                                        <p className='text-primary'>
+                                        <p className='text-primary text-right'>
                                             {offer?.company?.name}
                                         </p>
                                     </div>
