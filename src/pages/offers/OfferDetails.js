@@ -48,16 +48,16 @@ const OfferDetails = () => {
                         >
                             <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 rounded-lg'></div>
                             <div className='relative z-10 flex flex-col gap-4 items-center justify-center h-full'>
-                                <div className='bg-slate-200 flex items-center justify-center rounded-full w-[100px] h-[100px]'>
+                                <div className='bg-slate-200 flex items-center justify-center rounded-full sm:w-[100px] w-[80px] sm:h-[100px] h-[80px]'>
                                     <img 
                                     src={baseURL + offer?.company?.logo} 
                                     alt={offer?.company?.name}
-                                    className='object-contain w-[80px] h-[80px] rounded-full'
+                                    className='object-contain sm:w-[80px] w-[60px] sm:h-[80px] h-[60px] rounded-full'
                                     />
                                 </div>
                                 <div className='text-white'>
-                                    <h1 className='gradient-text text-4xl font-semibold capitalize text-center mb-2'>{offer?.company?.name}</h1>
-                                    <p className='text-gray-100'>Paskistan's Leading Company</p>
+                                    <h1 className='gradient-text text-[24px] sm:text-4xl font-semibold capitalize text-center sm:mb-2 mb-1'>{offer?.company?.name}</h1>
+                                    <p className='text-gray-100 text-center sm:text-base text-[13px]'>Paskistan's Leading Company</p>
                                 </div>
                             </div>
 

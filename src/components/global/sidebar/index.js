@@ -67,7 +67,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li 
-                        className={`${isActive('invests') ? 'active' : ''} sideMenu-item md:block hidden`}
+                        className={`${isActive('invests') ? 'active' : ''} sideMenu-item`}
                         onClick={() => setShowDrawer(false)}
                         >
                             <Link to='/invests'>   
@@ -76,7 +76,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li 
-                        className={`${isActive('progress') ? 'active' : ''} sideMenu-item md:block hidden`}
+                        className={`${isActive('progress') ? 'active' : ''} sideMenu-item`}
                         onClick={() => setShowDrawer(false)}
                         >
                             <Link to='/progress'>   
@@ -95,7 +95,7 @@ const Sidebar = () => {
                         </li>
 
                         <li 
-                        className={`${isActive('team') ? 'active' : ''} sideMenu-item md:block hidden`}
+                        className={`${isActive('team') ? 'active' : ''} sideMenu-item`}
                         onClick={() => setShowDrawer(false)}
                         >
                             <Link to='/team'>   

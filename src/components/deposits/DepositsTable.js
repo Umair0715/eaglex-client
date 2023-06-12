@@ -100,8 +100,12 @@ const DepositsTable = () => {
                                         <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
                                             {item?.accountNo}
                                         </Td>
-                                        <Td className="px-6 py-4 whitespace-nowrap text-red-500 sm:text-center text-right">
-                                            <RequestStatus status={item?.status} />
+                                        <Td className="px-6 py-4 whitespace-nowrap text-red-500 sm:text-center text-right ">
+                                            <div className='flex items-end justify-end'>
+                                                <RequestStatus 
+                                                status={item?.status} 
+                                                />
+                                            </div>
                                         </Td>
                                         <Td className="px-6 py-4 whitespace-nowrap underline text-primary sm:text-center text-right"
                                         >
