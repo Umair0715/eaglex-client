@@ -73,15 +73,15 @@ const OfferDetails = () => {
                                         </p>
                                     </div>
                                     
-                                    <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
+                                    {/* <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                         <h6 className='font-medium'>Registration Id</h6>
                                         <p className='text-primary'>
                                             {offer?.company?.registrationId}
                                         </p>
-                                    </div>
+                                    </div> */}
                                     <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                         <h6 className='font-medium'>Location</h6>
-                                        <p className='text-primary'>
+                                        <p className='text-primary text-right'>
                                             {offer?.company?.location}
                                         </p>
                                     </div>
