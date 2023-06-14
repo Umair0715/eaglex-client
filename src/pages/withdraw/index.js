@@ -110,12 +110,6 @@ const Withdraw = () => {
                                             amount && 
                                             <div className='mt-10 flex flex-col gap-1 '>
                                                 {/* <div className='flex items-center gap-4'>
-                                                    <p className='font-medium w-[150px]'>Govt Tax : </p>
-                                                    <span>
-                                                        {settings?.govtFee + '%' + " = " + ((amount/100) * settings?.govtFee).toFixed(2) + ' PKR'}
-                                                    </span>
-                                                </div> */}
-                                                <div className='flex items-center gap-4'>
                                                     <p className='font-medium w-[150px]'>Service Charges : </p>
                                                     <span>
                                                         {settings?.platformFee + '%' + " = " + ((amount/100) * settings?.platformFee).toFixed(2) + ' PKR'}
@@ -126,7 +120,8 @@ const Withdraw = () => {
                                                     <span>
                                                         { (amount - ((amount/100) * settings?.platformFee)) + ' PKR'}
                                                     </span>
-                                                </div>
+                                                </div> */}
+                                                <p className='text-red-500'><b>NOTE:</b> According to the policy , service charges will be applicable on every withdrawal</p>
                                             </div>
                                         }
                                         <div className='mt-10 '

@@ -62,7 +62,7 @@ const Invite = () => {
                             <input 
                             type="text" 
                             className="input" 
-                            value={user?.referralCode}
+                            value={url}
                             />
                         </div>
                     </div>
