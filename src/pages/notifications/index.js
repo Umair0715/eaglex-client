@@ -12,33 +12,39 @@ import Axios from 'config/api'
 import toastError from 'utils/toastError';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import moment from 'moment'
+import { useNotificationContext } from 'context/NotificationContext'
 
 
 const Notifications = () => {
+    const { setNotificationsCount } = useNotificationContext();
     const [notifications , setNotifications] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [currentPage , setCurrentPage] = useState(1);
     const [pages , setPages] = useState(1);
     const [docsCount , setDocsCount] = useState(0);
+    const [loading , setLoading] = useState(false);
 
     const { user } = useSelector(state => state.auth);
 
-    const { isLoading , data } = useQuery('fetch-notifications' , () => fetcher('/notification' , user));
+    // const { isLoading , data } = useQuery('fetch-notifications' , () => fetcher('/notification' , user));
 
     useEffect(() => {
-        window.scrollTo(0,0)
+        setNotificationsCount(0);
+        window.scrollTo(0,0);
+        fetchData(1);
     },[]);
 
-    useEffect(() => {
-        if (data) {
-            setNotifications(data?.data?.data?.docs);
-            setCurrentPage(data?.data?.data?.page);
-            setPages(data?.data?.data?.pages);
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (data) {
+    //         setNotifications(data?.data?.data?.docs);
+    //         setCurrentPage(data?.data?.data?.page);
+    //         setPages(data?.data?.data?.pages);
+    //     }
+    // }, [data]);
 
     const fetchData = async (newPage) => {
         try {
+            if(newPage === 1) setLoading(true);
             const { data : { data : { docs , page , pages , docCount } } } = await Axios(`/notification?page=${newPage}`);
             setNotifications(prev => [...prev , ...docs]);
             setCurrentPage(page);
@@ -49,7 +55,9 @@ const Notifications = () => {
             } else {
                 setHasMore(true)
             }
+            setLoading(false);
         } catch (error) {
+            setLoading(false);
             toastError(error);            
         }
     }
@@ -63,7 +71,7 @@ const Notifications = () => {
                 </div>
                 <div className='mt-6'>
                     {
-                        isLoading
+                        loading
                         ? 
                             <Loader />
                         : 

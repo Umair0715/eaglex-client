@@ -8,6 +8,8 @@ import Logo from 'assets/svgs/mainLogo.svg';
 import Bg from 'assets/images/homeBg.jpg';
 import { logout } from 'redux/actions/authActions';
 import { useDispatch } from 'react-redux';
+import ApkFile from 'assets/eaglexgroup.apk';
+
 
 const Sidebar = () => {
     const dispatch = useDispatch();
@@ -148,16 +150,6 @@ const Sidebar = () => {
                                 <span>Invite Friend</span>
                             </Link>
                         </li>
-
-                        {/* <li 
-                        className={`${isActive('wallet-history') ? 'active' : ''} sideMenu-item`}
-                        onClick={() => setShowDrawer(false)}
-                        >
-                            <Link to='/wallet-history'>   
-                                <i className="uil uil-book-reader"></i>
-                                <span>Wallet History</span>
-                            </Link>
-                        </li> */}
                         <li 
                         className={`${isActive('support') ? 'active' : ''} sideMenu-item`}
                         onClick={() => setShowDrawer(false)}
@@ -166,6 +158,14 @@ const Sidebar = () => {
                                 <i className="uil uil-envelope-question"></i>
                                 <span>Contact Us</span>
                             </Link>
+                        </li>
+                        <li 
+                        className='sideMenu-item'
+                        >
+                            <a href={ApkFile} download>
+                                <i className="uil uil-download-alt"></i>
+                                <span>Download Our App</span>
+                            </a>
                         </li>
                         <li 
                         className='sideMenu-item'

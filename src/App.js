@@ -35,6 +35,7 @@ import NotFound from "pages/notFound";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import Notifications from "pages/notifications";
+import { useNotificationContext } from "context/NotificationContext";
 
 
 
@@ -42,6 +43,7 @@ function App() {
     useApi();
     const [socket , setSocket] = useState(null);
     const { user } = useSelector(state => state.auth);
+    const { setNotificationsCount } = useNotificationContext();
 
     useEffect(() => {
         setSocket(io(baseURL));
@@ -51,11 +53,13 @@ function App() {
         if(!socket) return;
         socket.on('new-notification' , message => {
             toast.info(message);
-        })
+            setNotificationsCount(prev => prev + 1)
+        });
     }, [socket])
 
     return (
-        <div>
+        <div className="relative">
+        
             <ToastContainer 
                 style={{fontSize: 15}}
                 position="top-center"

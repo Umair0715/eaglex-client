@@ -15,19 +15,22 @@ import { Provider } from 'react-redux';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import NotificationContextProvider from 'context/NotificationContext';
 
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <DrawerContextProvider>
-        <Provider store={store}>
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <App />
-                </Router>
-            {/* <ReactQueryDevtools />  */}
-            </QueryClientProvider>
-        </Provider>
-    </DrawerContextProvider>
+    <NotificationContextProvider>
+        <DrawerContextProvider>
+            <Provider store={store}>
+                <QueryClientProvider client={queryClient}>
+                    <Router>
+                        <App />
+                    </Router>
+                {/* <ReactQueryDevtools />  */}
+                </QueryClientProvider>
+            </Provider>
+        </DrawerContextProvider>
+    </NotificationContextProvider>
 );

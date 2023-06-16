@@ -41,7 +41,7 @@ const Dashboard = () => {
                     <div className='w-[80px] h-[3px] bg-primary mb-4'></div>
                     <div>
                         <p>Total Balance</p>
-                        <h1 className='mt-2 mb-6 gradient-text text-3xl font-semibold'>PKR : {user?.wallet?.totalBalance}</h1>
+                        <h1 className='mt-2 mb-6 gradient-text text-3xl font-semibold'>PKR : {user?.wallet?.totalBalance?.toFixed(2)}</h1>
                         <div className='flex items-center justify-center gap-8'>
                             <Link to='/deposit' className='cursor-pointer'>
                                 <div className='gradient-text text-2xl border border-primary rounded-full w-[50px] h-[50px] flex items-center justify-center mx-auto'>
