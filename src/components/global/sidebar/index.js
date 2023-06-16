@@ -113,6 +113,15 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li 
+                        className={`${isActive('notifications') ? 'active' : ''} sideMenu-item`}
+                        onClick={() => setShowDrawer(false)}
+                        >
+                            <Link to='/notifications'>   
+                                <i className="uil uil-bell"></i>
+                                <span>Notifications</span>
+                            </Link>
+                        </li>
+                        <li 
                         className={`${isActive('change-bank') ? 'active' : ''} sideMenu-item`}
                         onClick={() => setShowDrawer(false)}
                         >

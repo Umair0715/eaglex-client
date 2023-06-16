@@ -12,7 +12,7 @@ const Offers = ({ offers }) => {
             
             <div className='grid lg:grid-cols-2 grid-cols-1 gap-6 mt-4'>
                 {
-                    offers?.map((item,i) => (
+                    offers?.sort((a,b) => a?.timePeriod - b?.timePeriod)?.map((item,i) => (
                         <div key={i} className={`shadow-bg-2 p-3 rounded-lg flex sm:items-center justify-between cursor-pointer
                         
                         `}

@@ -14,7 +14,7 @@ import Team from "pages/team";
 import WithdrawRequests from "pages/withdrawlRequests";
 import WithdrawRequestDetails from "pages/withdrawlRequests/WithdrawRequestDetails";
 import { BrowserRouter as Router , Routes , Route, Navigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import WalletHistory from "pages/walletHistory";
 import InvestNow from "pages/offers/InvestNow";
 import InvestSuccess from "pages/offers/InvestSuccess";
@@ -27,18 +27,32 @@ import Withdraw from "pages/withdraw";
 import WithdrawSuccess from "pages/withdraw/WithdrawSuccess";
 import ChangeBank from "pages/bank/ChangeBank";
 import Invite from "pages/invite";
-import { useApi } from "config/api";
+import { baseURL, useApi } from "config/api";
 import ProtectedRoute from "ProtectedRoute";
 import { useSelector } from "react-redux";
 import VerifyOtp from "pages/auth/VerifyOtp";
 import NotFound from "pages/notFound";
+import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+import Notifications from "pages/notifications";
 
 
 
 function App() {
     useApi();
-
+    const [socket , setSocket] = useState(null);
     const { user } = useSelector(state => state.auth);
+
+    useEffect(() => {
+        setSocket(io(baseURL));
+    }, []);
+
+    useEffect(() => {
+        if(!socket) return;
+        socket.on('new-notification' , message => {
+            toast.info(message);
+        })
+    }, [socket])
 
     return (
         <div>
@@ -225,6 +239,14 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <Invite />
+                    </ProtectedRoute>
+                }
+                />
+                <Route 
+                path='/notifications'
+                element={
+                    <ProtectedRoute>
+                        <Notifications />
                     </ProtectedRoute>
                 }
                 />
