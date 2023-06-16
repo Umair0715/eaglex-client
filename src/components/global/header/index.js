@@ -51,6 +51,9 @@ const Header = () => {
                             <button className='btn-primary py-1.5 px-4 sm:text-sm text-xs'>Deposit Now</button>
                         </Link>
                     }
+                    <Link to='/notifications' title='Notifications'>
+                        <i className="uil uil-bell text-xl"></i>
+                    </Link>
                     <div className='relative'>
                     <div className='bg-darkSlate rounded-full w-[35px] h-[35px] flex items-center justify-center text-grayText text-xl cursor-pointer border p-0.5'
                     onClick={() => toggleMenu()}>
