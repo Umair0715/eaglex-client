@@ -12,6 +12,7 @@ import { ClipLoader } from 'react-spinners';
 import { baseURL } from 'config/api';
 import { useNotificationContext } from 'context/NotificationContext';
 import ApkFile from 'assets/eaglexgroup.apk';
+import GooglePlayImg from 'assets/images/googlePlay.png';
 
 
 const userImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fYaY9LEjaK0yhT3WsncM36y6MD9sLCHU4A&usqp=CAU';
@@ -57,9 +58,12 @@ const Header = () => {
                     }
                     {
                         location.pathname === '/dashboard' &&
-                        <a href={ApkFile} download className='border sm:text-[14px] text-xs flex items-center gap-2 rounded-full px-3  py-2 cursor-pointer hover:shadow-md'>
-                            <i className="uil uil-download-alt"></i>
-                            <span>Download App</span>
+                        <a href={ApkFile} download>
+                            <img 
+                            src={GooglePlayImg} 
+                            alt="Download APK"
+                            className='w-[110px] rounded-md'
+                            />
                         </a>
                     }
                     
