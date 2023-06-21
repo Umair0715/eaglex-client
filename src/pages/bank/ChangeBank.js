@@ -53,6 +53,9 @@ const ChangeBank = () => {
                 }
             });
             toast.success(message);
+            setBankName('');
+            setAccountHolder('');
+            setAccountNo('');
             setLoading(false);
         } catch (error) {
             setLoading(false);

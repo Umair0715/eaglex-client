@@ -80,6 +80,7 @@ const EditProfileForm = () => {
                                 hidden 
                                 ref={imgRef} 
                                 onChange={handleFileChange}
+                                
                                 />
                                 <img 
                                 src={image} 
@@ -103,12 +104,17 @@ const EditProfileForm = () => {
                             placeholder='Your First Name'
                             value={firstName}
                             setValue={setFirstName}
+                            readOnly
+                            title='You cannot update your name'
+
                             />
                             <Input 
                             label='Last Name'
                             placeholder='Your Last Name'
                             value={lastName}
                             setValue={setLastName}
+                            disabled
+                            title='You cannot update your name'
                             />
                         </div>
                         <div className='mt-4 flex items-end justify-end'>

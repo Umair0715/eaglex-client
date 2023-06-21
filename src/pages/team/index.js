@@ -20,9 +20,11 @@ const Team = () => {
     useEffect(() => {
         if (data) {
             setTeamDetails(data?.data?.data);
+
         }
     } , [data]);
 
+   
 
     useEffect(() => {
         window.scrollTo(0,0)
@@ -52,6 +54,15 @@ const Team = () => {
                                         <h6 className='font-medium'>Total Investment</h6>
                                         <span className='text-primary'>{teamDetails?.totalInvestAmount} PKR</span>
                                     </div>
+                                </div>
+                                <div className='pb-4 px-3'>
+                                    <hr />
+                                </div>
+                                <div className='text-dark flex items-center justify-between sm:px-4 px-3 pb-3'>
+                                    <h6 className='font-medium'>
+                                        Total Team Deposit
+                                    </h6>
+                                    <span className='text-primary'>{teamDetails?.totalTeamDeposit} PKR</span>
                                 </div>
                             </div>
                             <div className='shadow-bg mt-6 sm:px-4 px-3 py-4 flex flex-col gap-4' style={{ borderRadius : '20px'}}>

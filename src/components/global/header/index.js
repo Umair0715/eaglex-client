@@ -58,7 +58,7 @@ const Header = () => {
                     }
                     {
                         location.pathname === '/dashboard' &&
-                        <a href={ApkFile} download>
+                        <a href='https://play.google.com/store/apps/details?id=com.eaglexgroup.eaglex' target='_blank'>
                             <img 
                             src={GooglePlayImg} 
                             alt="Download APK"

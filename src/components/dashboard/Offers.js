@@ -36,7 +36,7 @@ const Offers = ({ offers }) => {
                                         {item?.company?.name}
                                     </h6>
                                     <p className='sm:text-sm text-[13px] pt-1 pb-1.5'>
-                                        {item?.name} / {item?.timePeriod} days</p>
+                                        {item?.name} / {item?.timePeriod} {item?.timePeriod === 1 ? 'day' : 'days'}</p>
                                     <h5 className='font-semibold'>
                                         {item?.depositRange[0] + "-" + item?.depositRange[1]} RS
                                     </h5>
@@ -44,7 +44,8 @@ const Offers = ({ offers }) => {
                             </div>
                             <div className='flex flex-col sm:justify-start justify-between flex-[0.40]'>
                                 <div className='sm:text-xl text-lg font-semibold gradient-text text-right sm:mt-0 mt-4'>
-                                    {item?.profit}% / Day
+                                    {item?.profit}% /
+                                    <span className='text-base'> Per Day</span>
                                 </div>
                                 <div className='mt-2 flex items-end justify-end'>
                                     <button  
