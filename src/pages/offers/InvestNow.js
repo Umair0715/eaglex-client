@@ -75,7 +75,6 @@ const InvestNow = () => {
         });
 
     }
-    console.log({ offer })
     return (
         <Layout>
             {
@@ -123,7 +122,7 @@ const InvestNow = () => {
                                     Available Balance
                                 </h3>
                                 <p className='text-2xl font-bold gradient-text'>
-                                    {user?.wallet?.totalBalance}
+                                    {user?.wallet?.totalBalance?.toFixed(2)}
                                 </p>
                             </div>
                             

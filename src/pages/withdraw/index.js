@@ -90,7 +90,13 @@ const Withdraw = () => {
                                         setValue={setAmount}
                                         required
                                         />
-
+                                        {
+                                            amount > 0 && 
+                                            <div className='text-red-500 mt-2 sm:text-base text-sm'>
+                                            <b>NOTE : </b>
+                                            Please note that withdrawal requests can only be made between 10:00 AM to 5:00 PM Pakistan Standard Time. Kindly ensure that you initiate your withdrawal within this time frame.
+                                        </div>
+                                        }
                                         <div className='mt-6'>
                                             <p>Withdraw Money To</p>
                                             <div className='shadow-bg p-4 mt-2 flex items-center justify-between'>
@@ -121,7 +127,7 @@ const Withdraw = () => {
                                                         { (amount - ((amount/100) * settings?.platformFee)) + ' PKR'}
                                                     </span>
                                                 </div> */}
-                                                <p className='text-red-500'><b>NOTE:</b> According to the policy , service charges will be applicable on every withdrawal</p>
+                                                <p className='text-red-500 sm:text-base text-sm'><b>NOTE:</b> According to the policy , service charges will be applicable on every withdrawal</p>
                                             </div>
                                         }
                                         <div className='mt-10 '
