@@ -34,10 +34,10 @@ const Home = () => {
                                 Register
                             </Link>
                         </div>
-                        <AboutLink 
-                        color='text-gray-200' 
-                        hoverColor='hover:text-white' 
-                        />
+                            {/* <AboutLink 
+                            color='text-gray-200' 
+                            hoverColor='hover:text-white' 
+                            /> */}
                 </div>
             </div>
         </div>
