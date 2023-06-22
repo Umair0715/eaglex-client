@@ -24,15 +24,13 @@ const Team = () => {
         }
     } , [data]);
 
-   
-
     useEffect(() => {
         window.scrollTo(0,0)
     },[])
 
     return (
         <Layout showNav={true}>
-            <div className='sm:text-base text-sm'>
+            <div className='sm:text-base text-[13px]'>
                 {
                     isLoading
                     ? 
@@ -58,11 +56,60 @@ const Team = () => {
                                 <div className='pb-4 px-3'>
                                     <hr />
                                 </div>
-                                <div className='text-dark flex items-center justify-between sm:px-4 px-3 pb-3'>
-                                    <h6 className='font-medium'>
+                                <div className='text-primary flex items-center justify-between sm:px-4 px-3 pb-3 border-b font-semibold'>
+                                    <h6 className=''>
                                         Total Team Deposit
                                     </h6>
                                     <span className='text-primary'>{teamDetails?.totalTeamDeposit} PKR</span>
+                                </div>
+                                <div className='flex flex-col gap-2 border-b pt-3'>
+                                    <div className='text-dark flex items-center justify-between  sm:px-4 px-3 pb-3'>
+                                        <h6 className='font-medium'>
+                                            Level One Deposit
+                                        </h6>
+                                        <span className='text-primary'>{teamDetails?.levelOneMembersDeposit?.toFixed(1)} PKR</span>
+                                    </div>
+                                    <div className='text-dark flex items-center justify-between  sm:px-4 px-3 pb-3'>
+                                        <h6 className='font-medium'>
+                                            Level One Commission
+                                        </h6>
+                                        <span className='text-primary'> 4.1% = {teamDetails?.levelOneCommissionAmount} PKR</span>
+                                    </div>
+                                </div>
+                                <div className='flex flex-col gap-2 border-b pt-3'>
+                                    <div className='text-dark flex items-center justify-between  sm:px-4 px-3 pb-3'>
+                                        <h6 className='font-medium'>
+                                            Level Two Deposit
+                                        </h6>
+                                        <span className='text-primary'>{teamDetails?.levelTwoMembersDeposit?.toFixed(1)} PKR</span>
+                                    </div>
+                                    <div className='text-dark flex items-center justify-between  sm:px-4 px-3 pb-3 '>
+                                        <h6 className='font-medium'>
+                                            Level Two Commission
+                                        </h6>
+                                        <span className='text-primary'> 3.1% = {teamDetails?.levelTwoCommissionAmount} PKR</span>
+                                    </div>
+                                </div>
+                                <div className='flex flex-col gap-2 border-b pt-3'>
+                                    <div className='text-dark flex items-center justify-between  sm:px-4 px-3 pb-3'>
+                                        <h6 className='font-medium'>
+                                            Level Three Deposit
+                                        </h6>
+                                        <span className='text-primary'>{teamDetails?.levelThreeMembersDeposit?.toFixed(1)} PKR</span>
+                                    </div>
+                                    <div className='text-dark flex items-center justify-between sm:px-4 px-3 pb-3 '>
+                                        <h6 className='font-medium'>
+                                            Level Three Commission
+                                        </h6>
+                                        <span className='text-primary'>2.1 % = {teamDetails?.levelThreeCommissionAmount} PKR
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className='text-primary flex items-center justify-between pt-3 sm:px-4 px-3 pb-3 border-b font-semibold'>
+                                    <h6 className=''>
+                                        Total Team Commission
+                                    </h6>
+                                    <span className='text-primary'>{teamDetails?.totalTeamCommissionAmount} PKR</span>
                                 </div>
                             </div>
                             <div className='shadow-bg mt-6 sm:px-4 px-3 py-4 flex flex-col gap-4' style={{ borderRadius : '20px'}}>

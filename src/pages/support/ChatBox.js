@@ -5,6 +5,8 @@ import ScrollableFeed from 'react-scrollable-feed';
 import { ClipLoader } from 'react-spinners';
 import toastError from 'utils/toastError';
 import ImagePopup from './ImagePopup';
+import TimeAgo from 'react-timeago'
+
 
 const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
     const imgRef = useRef();
@@ -155,9 +157,9 @@ const ChatBox = ({ chat , setChat , messages , setMessages , socket }) => {
                                                 />
                                             </div>
                                         }
-                                        {/* <div className='text-xs '>
+                                        <div className='text-xs '>
                                             <TimeAgo date={new Date(item?.createdAt)} />
-                                        </div> */}
+                                        </div>
                                         </div>
                                     </div>
                                 ))

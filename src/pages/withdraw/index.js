@@ -76,7 +76,7 @@ const Withdraw = () => {
                         <div className='mt-6 shadow-bg p-4 rounded-lg '>
                             <div className='flex items-center justify-center flex-col gap-1'>
                                 <h3 className='text-lg'>Available Balance</h3>
-                                <p className='sm:text-3xl font-semibold gradient-text text-xl'>PKR:{user?.wallet?.totalBalance}</p>
+                                <p className='sm:text-3xl font-semibold gradient-text text-xl'>PKR:{user?.wallet?.totalBalance?.toFixed(2)}</p>
                             </div>
                             {
                                 bank 
