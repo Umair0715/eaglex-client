@@ -50,7 +50,7 @@ const TeamTable = ({ teamMembers }) => {
                                     {item?.level}
                                 </Td>
                                 <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
-                                    {item?.totalDepositAmount?.toFixed(2)}
+                                    {item?.totalDepositAmount?.toFixed(2) || 0}
                                 </Td>
                             </Tr>
                             ))
