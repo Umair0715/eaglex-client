@@ -31,7 +31,7 @@ const WithdrawRequestsTable = () => {
         }
     }, [data]);
 
-    console.log({ data })
+    // console.log({ data })
 
     return (
         <div className=" shadow-bg overflow-x-auto rounded-lg">
@@ -59,6 +59,12 @@ const WithdrawRequestsTable = () => {
                                 <Tr className='bg-gradient text-white'>
                                     <Th scope="col" className=" font-medium px-6 py-4 text-center">
                                         Withdraw Amount
+                                    </Th>
+                                    <Th scope="col" className=" font-medium px-6 py-4 text-center">
+                                        Service Charges
+                                    </Th>
+                                    <Th scope="col" className=" font-medium px-6 py-4 text-center">
+                                        Received Amount
                                     </Th>
                                     <Th scope="col" className=" font-medium px-6 py-4 text-center">
                                         Date
@@ -89,6 +95,12 @@ const WithdrawRequestsTable = () => {
                                         >
                                         <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
                                             {item?.withdrawAmount}
+                                        </Td>
+                                        <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
+                                            {item?.withdrawFee}
+                                        </Td>
+                                        <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
+                                            {item?.receivedAmount}
                                         </Td>
                                         <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
                                             {moment(item?.createdAt).format('DD MMM YYYY') }

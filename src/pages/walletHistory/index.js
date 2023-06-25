@@ -73,7 +73,7 @@ const WalletHistory = () => {
                                             <Td className={`  px-6 py-4 whitespace-nowrap sm:text-center text-right ${
                                                 item?.action === '+' ? 'text-primary' : item?.action === '-' ? 'text-red-500' : ''} `
                                             }>
-                                                {item?.action + item?.amount}
+                                                {item?.action + item?.amount?.toFixed(2)}
                                             </Td>
                                             <Td 
                                             className={`  px-6 py-4 whitespace-nowrap sm:text-center text-right 

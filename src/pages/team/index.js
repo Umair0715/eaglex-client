@@ -12,15 +12,16 @@ import fetcher from 'utils/fetcher'
 const Team = () => {
     const { user } = useSelector(state => state.auth);
     const [teamDetails , setTeamDetails] = useState('');
+    const [level , setLevel] = useState(0);
 
-    const { isLoading , data } = useQuery('fetch-team-details' , () => {
-        return fetcher('/user/my-team-details' , user);
+    const queryKey = [`fetch-team-details` , level]
+    const { isLoading , data } = useQuery(queryKey , () => {
+        return fetcher(`/user/my-team-details?level=${level}` , user);
     })
 
     useEffect(() => {
         if (data) {
             setTeamDetails(data?.data?.data);
-
         }
     } , [data]);
 
@@ -111,6 +112,18 @@ const Team = () => {
                                     </h6>
                                     <span className='text-primary'>{teamDetails?.totalTeamCommissionAmount} PKR</span>
                                 </div>
+
+                                <div className='pt-3 sm:px-4 px-3 pb-3 border-b'>
+                                    <div className='text-primary flex items-center justify-between  font-semibold'>
+                                        <h6 className=''>
+                                            Extra Commission
+                                        </h6>
+                                        <span className='text-primary'>
+                                            {user?.extraCommission || 0} PKR
+                                        </span>
+                                    </div>
+                                    <div className='text-sm mt-2'><b>NOTE :</b> You will get 2% extra commission on every 100k team deposit (upto 3 levels)</div>
+                                </div>
                             </div>
                             <div className='shadow-bg mt-6 sm:px-4 px-3 py-4 flex flex-col gap-4' style={{ borderRadius : '20px'}}>
                                 <div>
@@ -138,7 +151,7 @@ const Team = () => {
                                         <div className='flex flex-col gap-1 text-right'>
                                             <h6 className='font-medium'>Commission</h6>
                                             <span className='text-primary'>
-                                                {teamDetails?.levelOneCommission * teamDetails?.levelOneMembers} %    
+                                                {(teamDetails?.levelOneCommission * teamDetails?.levelOneMembers)?.toFixed(1)} %    
                                             </span>
                                         </div>
                                     </div>
@@ -170,7 +183,7 @@ const Team = () => {
                                         <div className='flex flex-col gap-1 text-right'>
                                             <h6 className='font-medium'>Commission</h6>
                                             <span className='text-primary'>
-                                            {teamDetails?.levelTwoCommission * teamDetails?.levelTwoMembers} %
+                                            {(teamDetails?.levelTwoCommission * teamDetails?.levelTwoMembers)?.toFixed(1)} %
                                             </span>
                                         </div>
                                     </div>
@@ -202,11 +215,33 @@ const Team = () => {
                                         <div className='flex flex-col gap-1 text-right'>
                                             <h6 className='font-medium'>Commission</h6>
                                             <span className='text-primary'>
-                                            {teamDetails?.levelThreeMembers * teamDetails?.levelThreeCommission} %
+                                            {(teamDetails?.levelThreeMembers * teamDetails?.levelThreeCommission)?.toFixed(1)} %
                                             </span>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div className='mt-8 shadow-bg '>
+                                <div className='flex items-center justify-between sm:flex-row flex-col gap-4  px-4 py-4'>
+                                    <h3 className='text-lg font-semibold'>Team Members</h3>
+                                    <div className=' flex justify-end'>
+                                        <select 
+                                        className='sm:w-[200px] w-[100px] py-1.5 px-3 border border-dark rounded-full'
+                                        onChange={(e) => setLevel(e.target.value)}
+                                        value={level}
+                                        >
+                                            <option value={0}>All Levels</option>
+                                            <option value={1}>Level 1</option>
+                                            <option value={2}>Level 2</option>
+                                            <option value={3}>Level 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <TeamTable 
+                                teamMembers={teamDetails?.teamMembers}
+                                level={level}
+                                setLevel={setLevel} 
+                                />
                             </div>
                         </div>
                 }
