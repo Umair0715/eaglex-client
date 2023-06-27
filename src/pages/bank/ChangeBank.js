@@ -9,7 +9,7 @@ import banks from 'data/banks';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import fetcher from 'utils/fetcher';
@@ -17,9 +17,14 @@ import toastError from 'utils/toastError';
 
 
 const ChangeBank = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
     const { user } = useSelector(state => state.auth);
+
     const [bank , setBank] = useState('');
     const [loading , setLoading] = useState(false);
+   
 
     const { isLoading , data } = useQuery('fetch-bank' , () => {
         return fetcher('/bank/my' , user);
@@ -45,9 +50,8 @@ const ChangeBank = () => {
                 newBankName : bankName === 'Other' ? otherBank : bankName , 
                 newBankAccountHolder : accountHolder , 
                 newBankAccountNo : accountNo ,
-                prevBankDetails : bank?._id 
             }
-            const { data : { data : { message } } } = await Axios.post('/change-bank' , bankData , {
+            const { data : { data : { message , doc } } } = await Axios.put(`/bank/change/${bank?._id}` , bankData , {
                 headers : {
                     Authorization : `Bearer ${user?.token}`
                 }
@@ -56,6 +60,10 @@ const ChangeBank = () => {
             setBankName('');
             setAccountHolder('');
             setAccountNo('');
+            setBank(doc);
+            if(searchParams.get('withdraw')){
+                navigate('/withdraw' , { replace : true })
+            }
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -63,12 +71,39 @@ const ChangeBank = () => {
         }
     }
 
+    // **** prev ****  //
+    // const handleSubmit = async e => {
+    //     e.preventDefault();
+    //     try {
+    //         setLoading(true);
+    //         const bankData = { 
+    //             newBankName : bankName === 'Other' ? otherBank : bankName , 
+    //             newBankAccountHolder : accountHolder , 
+    //             newBankAccountNo : accountNo ,
+    //             prevBankDetails : bank?._id 
+    //         }
+    //         const { data : { data : { message } } } = await Axios.post('/change-bank' , bankData , {
+    //             headers : {
+    //                 Authorization : `Bearer ${user?.token}`
+    //             }
+    //         });
+    //         toast.success(message);
+    //         setBankName('');
+    //         setAccountHolder('');
+    //         setAccountNo('');
+    //         setLoading(false);
+    //     } catch (error) {
+    //         setLoading(false);
+    //         toastError(error);
+    //     }
+    // }
+
     return (
         <Layout>
             <div>
                 <div className='flex items-center justify-between gap-2'>
                     <Heading 
-                    title='Bank Change Request' 
+                    title='Change Bank Details' 
                     showIcon={false} 
                     />
                     <BackBtn />
@@ -140,10 +175,10 @@ const ChangeBank = () => {
                                         </button>
                                     </div>
                                 </form>
-                                <div className='text-primary mt-4'>
+                                {/* <div className='text-primary mt-4'>
                                     <b>NOTE : </b>
                                     Your account details replaced with these details once admin approve this change request. Please make sure to enter correct account details.
-                                </div>
+                                </div> */}
                             </div>
                         : 
                         <div className=' py-8 flex flex-col items-center justify-center'>

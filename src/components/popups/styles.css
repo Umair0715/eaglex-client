@@ -1,0 +1,16 @@
+.urdu-font {
+    font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+.popup {
+    animation: show 0.15s ease-in-out;
+}
+
+@keyframes show {
+    from {
+        transform: scale(0.3);
+    }
+    to {
+        transform: scale(1);
+    }
+}

@@ -20,6 +20,8 @@ const Withdraw = () => {
     const [loading , setLoading] = useState(false);
     const [settings , setSettings] = useState('');
 
+    
+
     const { isLoading , data } = useQuery('fetch-bank' , () => {
         return fetcher('/bank/my' , user);
     });
@@ -107,7 +109,7 @@ const Withdraw = () => {
                                                         <p>************{bank?.accountNo?.slice(-4)}</p>
                                                     </div>
                                                 </div>
-                                                <Link to='/change-bank' className='sm:text-4xl gradient-text text-2xl'>
+                                                <Link to='/change-bank?withdraw=true' className='sm:text-4xl gradient-text text-2xl'>
                                                     <i className="uil uil-pen"></i>
                                                 </Link>
                                             </div>

@@ -36,12 +36,15 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import Notifications from "pages/notifications";
 import { useNotificationContext } from "context/NotificationContext";
+import InstructionsPopup from "components/popups/InstructionsPopup";
 
 
 
 function App() {
     useApi();
     const [socket , setSocket] = useState(null);
+    const [showInstructionsPopup , setShowInstructionsPopup] = useState(false);
+
     const { user } = useSelector(state => state.auth);
     const { setNotificationsCount } = useNotificationContext();
 
@@ -55,11 +58,34 @@ function App() {
             toast.info(message);
             setNotificationsCount(prev => prev + 1)
         });
-    }, [socket])
+    }, [socket]);
+
+
+    useEffect(() => {
+        const isPopupShown = localStorage.getItem('isPopupShown');
+        if(user && !isPopupShown) {
+            setTimeout(() => {
+                setShowInstructionsPopup(true);
+                localStorage.setItem('isPopupShown', 'true');
+            }, 1500)
+        }
+    }, [user]);
+
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            localStorage.removeItem('isPopupShown');
+        };
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
 
     return (
         <div className="relative">
-        
+            { showInstructionsPopup && user && <InstructionsPopup 
+            setShowInstructionsPopup={setShowInstructionsPopup}
+            /> }
             <ToastContainer 
                 style={{fontSize: 15}}
                 position="top-center"

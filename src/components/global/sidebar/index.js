@@ -167,14 +167,14 @@ const Sidebar = () => {
                                 <span>Download Our App</span>
                             </a>
                         </li>
-                        <li 
+                        {/* <li 
                         className='sideMenu-item'
                         >
                             <a href='https://information.eaglexgroup.com' target='_blank'>   
                                 <i className="uil uil-book-reader"></i>
                                 <span>About Eaglex</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         
                         <li 
