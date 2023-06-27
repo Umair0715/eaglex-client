@@ -103,7 +103,7 @@ const ChangeBank = () => {
             <div>
                 <div className='flex items-center justify-between gap-2'>
                     <Heading 
-                    title='Change Bank Details' 
+                    title='Update Bank Details' 
                     showIcon={false} 
                     />
                     <BackBtn />
