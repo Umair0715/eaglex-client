@@ -89,16 +89,16 @@ const Notifications = () => {
                             >
                                 {
                                     notifications?.map((item) => (
-                                        <div className='shadow-bg p-3 rounded-md'>
+                                        <div className='shadow-bg p-3 rounded-md urdu-font'>
                                             <div className='flex sm:items-center justify-between sm:flex-row flex-col'>
-                                                <h3 className='text-xl gradient-text font-semibold'>
+                                                <h3 className='text-xl text-primary font-semibold'>
                                                     {item?.title}
                                                 </h3>
                                                 <p className='sm:text-sm text-xs text-gray-400'>
                                                     {moment(item?.createdAt).format('DD MMM YYYY hh:mm a')}
                                                 </p>
                                             </div>
-                                            <p className='text-gray-500 text-sm mt-2'>
+                                            <p className='text-gray-500 text-sm mt-4'>
                                                 {item?.description}
                                             </p>
                                         </div>
