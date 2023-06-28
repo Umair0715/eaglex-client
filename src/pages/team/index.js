@@ -12,6 +12,7 @@ import fetcher from 'utils/fetcher'
 const Team = () => {
     const { user } = useSelector(state => state.auth);
     const [teamDetails , setTeamDetails] = useState('');
+    const [settings , setSettings] = useState('');
     const [level , setLevel] = useState(0);
 
     const queryKey = [`fetch-team-details` , level]
@@ -22,6 +23,7 @@ const Team = () => {
     useEffect(() => {
         if (data) {
             setTeamDetails(data?.data?.data);
+            setSettings(data?.data?.data?.settings);
         }
     } , [data]);
 
@@ -122,7 +124,7 @@ const Team = () => {
                                             {user?.extraCommission || 0} PKR
                                         </span>
                                     </div>
-                                    <div className='text-sm mt-2'><b>NOTE :</b> You will get 2% extra commission on every 100k team deposit (upto 3 levels)</div>
+                                    <div className='text-sm mt-2'><b>NOTE :</b> You will get {settings?.extraCommission}% extra commission on every 100k team deposit (upto 3 levels)</div>
                                 </div>
                             </div>
                             <div className='shadow-bg mt-6 sm:px-4 px-3 py-4 flex flex-col gap-4' style={{ borderRadius : '20px'}}>
