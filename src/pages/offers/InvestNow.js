@@ -163,12 +163,24 @@ const InvestNow = () => {
                                     </div>
                                 }
                                 <div className='mt-6'>
-                                    <button 
-                                    className="btn-primary py-2 px-12"
-                                    disabled={!amount || loading}
-                                    >
-                                        {loading ? <ClipLoader size={20} color='white' /> : 'Done'}
-                                    </button>
+                                    {
+                                        offer?.isActive 
+                                        ? 
+                                        <button 
+                                        className="btn-primary py-2 px-12"
+                                        disabled={!amount || loading}
+                                        >
+                                            {loading ? <ClipLoader size={20} color='white' /> : 'Done'}
+                                        </button>
+                                        :
+                                            <button 
+                                            className="btn-red px-12 py-2 flex items-center gap-2"
+                                            disabled
+                                            >
+                                                <i className="uil uil-padlock"></i>
+                                                <span>Locked</span>
+                                            </button>
+                                    }
                                 </div>
                                 <div className='flex items-center mt-8 sm:text-base text-sm'>
                                     

@@ -26,7 +26,7 @@ const WithdrawRequestDetails = () => {
         } 
     }, [data]);
 
-    console.log({ item })
+    // console.log({ item })
 
     return (
         <Layout>
@@ -73,19 +73,19 @@ const WithdrawRequestDetails = () => {
                                     <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                         <h6 className='font-medium'>Bank Name</h6>
                                         <p className='text-primary'>
-                                            {item?.bankDetails?.bankName}
+                                            {item?.withdrawBank?.bankName || item?.bankDetails?.bankName}
                                         </p>
                                     </div>
                                     <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                         <h6 className='font-medium'>Account Holder</h6>
                                         <p className='text-primary'>
-                                            {item?.bankDetails?.accountHolder}
+                                            {item?.withdrawBank?.accountHolder || item?.bankDetails?.accountHolder}
                                         </p>
                                     </div>
                                     <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                         <h6 className='font-medium'>Account Number</h6>
                                         <p className='text-primary'>
-                                            {item?.bankDetails?.accountNo}
+                                            {item?.withdrawBank?.accountNo || item?.bankDetails?.accountNo}
                                         </p>
                                     </div>
                                     <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
@@ -103,8 +103,8 @@ const WithdrawRequestDetails = () => {
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-2 border-b pb-4 sm:text-base text-sm'>
-                                        <h6 className='font-medium'>Description</h6>
-                                        <p className='text-dark'>
+                                        <h6 className='font-medium'>Reason</h6>
+                                        <p className='text-red-500 text-lg font-bold'>
                                             {item?.description}
                                         </p>
                                     </div>

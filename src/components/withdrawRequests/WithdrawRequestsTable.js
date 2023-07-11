@@ -106,13 +106,13 @@ const WithdrawRequestsTable = () => {
                                             {moment(item?.createdAt).format('DD MMM YYYY') }
                                         </Td>
                                         <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
-                                            {item?.bankDetails?.bankName}
+                                            {item?.withdrawBank?.bankName || item?.bankDetails?.bankName}
                                         </Td>
                                         <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
-                                            {item?.bankDetails?.accountHolder}
+                                            {item?.withdrawBank?.accountHolder || item?.bankDetails?.accountHolder}
                                         </Td>
                                         <Td className=" text-gray-900  px-6 py-4 whitespace-nowrap sm:text-center text-right">
-                                            {item?.bankDetails?.accountNo}
+                                            {item?.withdrawBank?.accountNo || item?.bankDetails?.accountNo}
                                         </Td>
                                         <Td className="px-6 py-4">
                                             <RequestStatus status={item?.status} />

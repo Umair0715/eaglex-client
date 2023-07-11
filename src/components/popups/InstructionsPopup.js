@@ -17,13 +17,15 @@ const InstructionsPopup = ({ setShowInstructionsPopup }) => {
 
     useClickOutside(popupRef , () => setShowInstructionsPopup(false))
 
-    console.log({ settings })
+    // console.log({ settings })
     return (
         <div className='fixed top-0 left-0 w-full min-h-screen py-10 px-4 flex items-center justify-center bg-black bg-opacity-50 z-[9999]'>
-            <div className='popup bg-white sm:w-[600px] w-full sm:p-4 p-4 rounded-lg relative'>
+            <div
+            // ref={popupRef} 
+            className='popup bg-white sm:w-[600px] w-full sm:p-4 p-4 rounded-lg relative h-[500px] overflow-auto'
+            >
                 <div 
-                ref={popupRef}
-                className='absolute top-1 right-3 text-2xl cursor-pointer'
+                className='absolute top-1 right-3 text-4xl cursor-pointer'
                 onClick={() => setShowInstructionsPopup(false)}
                 >
                     <i className="uil uil-times"></i>
@@ -41,7 +43,7 @@ const InstructionsPopup = ({ setShowInstructionsPopup }) => {
                             <HashLoader size={20} />
                         </div>
                     : 
-                        <ol className="text-right urdu-font font-medium mt-10 flex flex-col gap-5">
+                        <ul className="text-right urdu-font font-medium mt-10 flex flex-col gap-5">
                             <li className='flex flex-row-reverse gap-2 text-sm leading-[2]'>
                                 <span>(1</span>
                                 <span className="">
@@ -69,16 +71,28 @@ const InstructionsPopup = ({ setShowInstructionsPopup }) => {
                             <li className='flex flex-row-reverse gap-2 text-sm leading-[2]'>
                                 <span>(5</span>
                                 <span className="">
-                                ایگل ایکس کو زیادہ لوگوں تک پہنچانے والے صارفین کو ٪{settings?.extraCommission} اضافی بونس دیا جائے گا۔
+                                اگر آپ اپنے ریفرل لنک سے لوگوں کو جوائن کرواتے ہیں تو ہر ایک لاکھ کے ڈیپازٹ پر آپکو {Number((100000/100) * settings?.extraCommission )}  روپے ریفرل کمیشن کے علاوہ دیا جائے گا۔     
                                 </span>
                             </li>
                             <li className='flex flex-row-reverse gap-2 text-sm leading-[2]'>
                                 <span>(6</span>
                                 <span className="">
-                                اگر آپ ہمارے برانڈ ایمبیسڈر بننا چاہتے ہیں تو واٹس ایپ پر رابطہ کریں۔
+                                وقفے وقفے سے ہم یوزرز کو بونس دیتے رہتے ہیں۔ بونس کی تازہ ترین معلومات کیلئے ایگل ایکس واٹس ایپ گروپ جوائن کریں۔
                                 </span>
                             </li>
-                        </ol>
+                            <li className='flex flex-row-reverse gap-2 text-sm leading-[2]'>
+                                <span>(7</span>
+                                <span className="">
+                                ڈیپازٹ ہر وقت آن رہتا ہے۔ آپ کسی بھی وقت رقم ہمارے اکاؤنٹس میں ڈیپازٹ کر سکتے ہیں۔
+                                </span>
+                            </li>
+                            <li className='flex flex-row-reverse gap-2 text-sm leading-[2]'>
+                                <span>(8</span>
+                                <span className="">
+                                ایگل ایکس کی پالیسیز کی خلاف ورزی پر آپکا اکاؤنٹ بلاک کر دیا جائے گا اور کسی بھی صورت نہیں کھولا جائے گا۔
+                                </span>
+                            </li>
+                        </ul>
                 }
                 
                 <center>

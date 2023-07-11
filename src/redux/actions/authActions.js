@@ -1,5 +1,5 @@
 import Axios from 'config/api';
-import { setLoading, setUser , setUpdateLoading } from 'redux/reducers/authReducer';
+import { setLoading, setUser , setUpdateLoading, setShowBlockedPopup } from 'redux/reducers/authReducer';
 import toastError from 'utils/toastError';
 import { toast } from 'react-toastify';
 
@@ -23,11 +23,15 @@ export const login = (data , navigate ) => async (dispatch) => {
     dispatch(setLoading(true))
     try {
         const { data : { data : { message , doc } } } = await Axios.post('/user/login' , data );
-        dispatch(setUser({...doc}));
-        localStorage.setItem('user' , JSON.stringify({...doc}));
+        if(doc?.isActive) {
+            dispatch(setUser({...doc}));
+            localStorage.setItem('user' , JSON.stringify({...doc}));
+            navigate('/dashboard');
+            toast.success(message);
+        }else {
+            dispatch(setShowBlockedPopup(true));
+        }
         dispatch(setLoading(false));
-        navigate('/dashboard');
-        toast.success(message);
     } catch (err) {
         dispatch(setLoading(false));
         console.log('login error' , err);
@@ -66,6 +70,7 @@ export const logout = (navigate , showToast = true) => async(dispatch) => {
         if(showToast){
             toast.success('Logged out successfully.')
         }
+        localStorage.removeItem('isPopupShown');
     } catch (err) {
         dispatch(setLoading(false));
         console.log('logout error' , err);

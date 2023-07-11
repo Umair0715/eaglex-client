@@ -114,6 +114,12 @@ const Team = () => {
                                     </h6>
                                     <span className='text-primary'>{teamDetails?.totalTeamCommissionAmount} PKR</span>
                                 </div>
+                                <div className='text-primary flex items-center justify-between pt-3 sm:px-4 px-3 pb-3 border-b font-semibold'>
+                                    <h6 className=''>
+                                        Team Re-invest Commission
+                                    </h6>
+                                    <span className='text-primary'>{user?.reInvestCommission} PKR</span>
+                                </div>
 
                                 <div className='pt-3 sm:px-4 px-3 pb-3 border-b'>
                                     <div className='text-primary flex items-center justify-between  font-semibold'>

@@ -5,7 +5,8 @@ const authSlice = createSlice({
     initialState : {
         user : localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null ,
         loading : false ,
-        updateLoading : false 
+        updateLoading : false , 
+        showBlockedPopup : false ,
     } ,
     reducers : {
         setUser(state , action) {
@@ -16,12 +17,15 @@ const authSlice = createSlice({
         } ,
         setUpdateLoading(state , action){
             state.updateLoading = action.payload;
+        } , 
+        setShowBlockedPopup (state , action) {
+            state.showBlockedPopup = action.payload;
         }
     }
     
 });
 
-export const { setUser , setLoading , setUpdateLoading } = authSlice.actions;
+export const { setUser , setLoading , setUpdateLoading , setShowBlockedPopup } = authSlice.actions;
 export default authSlice.reducer;
 
 

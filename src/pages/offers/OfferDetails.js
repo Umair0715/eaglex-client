@@ -111,9 +111,21 @@ const OfferDetails = () => {
                                     </div>
                                 </div>
                                 <div className='my-6 w-fit'>
-                                    <Link to={`/offers/invest/${offer?._id}`} className="btn-primary py-2 px-12">
-                                        Invest Now
-                                    </Link>
+                                    {
+                                        offer?.isActive 
+                                        ? 
+                                        <Link to={`/offers/invest/${offer?._id}`} className="btn-primary py-2 px-12">
+                                            Invest Now
+                                        </Link>
+                                        : 
+                                        <button
+                                        className="btn-red py-2 flex items-center gap-2 px-12"
+                                        disabled
+                                        >
+                                            <i className="uil uil-padlock"></i>
+                                            <span>Locked</span>
+                                        </button>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -26,6 +26,11 @@
     background-image: var(--primaryGradient) ;
     color : white;
 }
+
+.btn-red {
+    @apply text-pure font-medium rounded-full cursor-pointer disabled:cursor-not-allowed bg-red-500; 
+}
+
 .bg-gradient{
     background-image: var(--primaryGradient) ;
 }
@@ -104,4 +109,8 @@ table {
 }
 ::-webkit-scrollbar-thumb:hover{
     background-color: var(--primary);
+}
+
+.popup::-webkit-scrollbar-thumb{
+    background-color: var(--primary) !important;
 }

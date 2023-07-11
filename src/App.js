@@ -37,6 +37,7 @@ import { io } from "socket.io-client";
 import Notifications from "pages/notifications";
 import { useNotificationContext } from "context/NotificationContext";
 import InstructionsPopup from "components/popups/InstructionsPopup";
+import BlockedPopup from "components/popups/BlockedPopup";
 
 
 
@@ -45,7 +46,8 @@ function App() {
     const [socket , setSocket] = useState(null);
     const [showInstructionsPopup , setShowInstructionsPopup] = useState(false);
 
-    const { user } = useSelector(state => state.auth);
+
+    const { user , showBlockedPopup } = useSelector(state => state.auth);
     const { setNotificationsCount } = useNotificationContext();
 
     useEffect(() => {
@@ -83,9 +85,12 @@ function App() {
 
     return (
         <div className="relative">
-            { showInstructionsPopup && user && <InstructionsPopup 
-            setShowInstructionsPopup={setShowInstructionsPopup}
-            /> }
+            { 
+                showInstructionsPopup && user && user?.isActive && <InstructionsPopup 
+                setShowInstructionsPopup={setShowInstructionsPopup}
+                /> 
+            }
+            { showBlockedPopup ? <BlockedPopup /> : ''}
             <ToastContainer 
                 style={{fontSize: 15}}
                 position="top-center"

@@ -47,6 +47,18 @@ const DepositDetails = () => {
                                             <p className='text-primary'>{item?.amount}</p>
                                         </div>
                                         {
+                                            item?.bonusAmount > 0 
+                                            && 
+                                            <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
+                                                <h6 className='font-medium'>
+                                                    Bonus Amount
+                                                </h6>
+                                                <p className='text-primary'>
+                                                    {item?.bonusAmount}
+                                                </p>
+                                            </div>
+                                        }
+                                        {
                                         item?.status === 'approved' &&
                                         <div className='flex items-center justify-between border-b pb-4 sm:text-base text-sm'>
                                             <h6 className='font-medium'>Added Amount</h6>
